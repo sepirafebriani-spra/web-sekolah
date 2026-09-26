@@ -13,7 +13,7 @@
           type="image/png"
           href="{{ asset('img/favicon.png') }}">
 
-    <title>Dashboard - MTs YAPPENA</title>
+    <title>Dashboard - SMK YPC TASIKMALAYA</title>
 
     <!-- Font -->
     <link
@@ -61,27 +61,28 @@
         <!-- LOGO -->
         <div class="h-19.5">
 
-            <i
-                class="absolute top-0 right-0 hidden p-4 opacity-50 cursor-pointer
-                fas fa-times text-slate-400 xl:hidden"
-                sidenav-close>
-            </i>
-
-            <a
-                class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700"
+            <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700"
                 href="{{ route('admin.dashboard') }}">
 
                 <img
-                    src="{{ asset('img/logo-ct.png') }}"
-                    class="inline h-full max-w-full transition-all duration-200
-                    ease-nav-brand max-h-8"
-                    alt="main_logo">
+                    src="{{ !empty($profile->logo) && file_exists(storage_path('app/public/' . $profile->logo))
+                        ? asset('storage/' . $profile->logo)
+                        : asset('img/logo-ct.png') }}"
+                    alt="Logo Sekolah"
+                    style="
+                        width: 55px;
+                        height: 55px;
+                        object-fit: contain;
+                        display: inline-block;
+                        vertical-align: middle;
+                    ">
 
                 <span class="ml-1 font-semibold">
-                    MTs YAPPENA
+                    SMK YPC TASIKMALAYA
                 </span>
 
             </a>
+
         </div>
 
         <hr class="h-px mt-0 bg-transparent bg-gradient-to-r
@@ -178,7 +179,7 @@
                 <li class="mt-0.5 w-full">
 
                     <a
-                        href="{{ route('admin.siswa') }}"
+                        href="{{ route('admin.siswa.index') }}"
                         class="py-2.7 text-sm ease-nav-brand my-0 mx-4
                         flex items-center whitespace-nowrap px-4
                         transition-colors">
@@ -451,7 +452,7 @@
                             </h5>
 
                             <p class="mb-0 text-sm">
-                                Sistem Informasi MTs YAPPENA
+                                Sistem SMK YPC TASIKMALAYA
                             </p>
 
                         </div>

@@ -15,7 +15,7 @@
         crossorigin="anonymous"></script>
 </head>
 
-<body class="m-0 font-sans antialiased bg-pink-50 text-slate-500">
+<body class="m-0 font-sans antialiased bg-gray-50 text-slate-500">
 
     <!-- SIDEBAR -->
     <aside

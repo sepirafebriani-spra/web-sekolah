@@ -27,8 +27,20 @@ Route::prefix('admin')->group(function () {
     Route::get('/ekstrakulikuler', [Ekstrakulikuler::class, 'index'])
         ->name('admin.ekstrakulikuler');
 
+    // ================= GURU =================
+
     Route::get('/siswa', [SiswaController::class, 'index'])
-        ->name('admin.siswa');
+        ->name('admin.siswa.index');
+    Route::get('/create', [SiswaController::class, 'create'])
+        ->name('admin.siswa.create');
+    Route::get('/{id}/edit', [SiswaController::class, 'edit'])
+        ->name('admin.siswa.edit');
+    Route::get('/save/{id}', [SiswaController::class, 'save'])
+        ->name('admin.siswa.save');
+    Route::get('/{id}', [SiswaController::class, 'show'])
+        ->name('admin.siswa.show');
+    Route::get('/{id}', [SiswaController::class, 'delete'])
+        ->name('admin.siswa.delete');
 
     // ================= GURU =================
 

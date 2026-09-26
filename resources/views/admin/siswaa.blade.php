@@ -229,12 +229,10 @@
                 <!-- SISWA -->
                 <li class="mt-0.5 w-full">
 
-                   <a
-                        href="{{ route('admin.siswa.index') }}"
-                        class="py-2.7 shadow-soft-xl text-sm my-0 mx-4
-                        flex items-center whitespace-nowrap rounded-lg
-                        bg-white px-4 font-semibold text-slate-700">
-
+                    <a
+                        href="#"
+                        class="py-2.7 text-sm my-0 mx-4 flex items-center
+                        whitespace-nowrap px-4">
 
                         <div
                             class="mr-2 flex h-8 w-8 items-center justify-center
@@ -427,7 +425,7 @@
                     </h4>
 
                     <p class="text-white">
-                        Data guru dan tenaga pendidik SMK YPC TASIKMALAYA
+                        Data Siswa SMK YPC TASIKMALAYA
                     </p>
 
                 </div>
@@ -470,7 +468,7 @@
 
                     <!-- TAMBAH GURU -->
                     <a
-                        href="{{ route('admin.guru.create') }}"
+                        href="{{ route('admin.siswa.create') }}"
                         style="
                             display:inline-flex;
                             align-items:center;
@@ -484,7 +482,7 @@
                         ">
 
                         <i class="fas fa-plus mr-1"></i>
-                        Tambah Guru
+                        Tambah Siswa
 
                     </a>
 

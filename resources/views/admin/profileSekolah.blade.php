@@ -208,7 +208,7 @@
 
                 <li class="mt-0.5 w-full">
 
-                    <a href="{{ route('admin.siswa') }}"
+                    <a href="{{ route('admin.siswa.index') }}"
                         class="py-2.7 text-sm my-0 mx-4 flex items-center
                         whitespace-nowrap px-4">
 
@@ -498,7 +498,7 @@
 
                         </h5>
 
-                        <p class="mb-0 font-semibold leading-normal
+                        {{-- <p class="mb-0 font-semibold leading-normal
                             text-sm text-slate-400">
 
                             NPSN:
@@ -509,7 +509,7 @@
                             Kepala Sekolah:
                             {{ $profile->kepala_sekolah ?? '-' }}
 
-                        </p>
+                        </p> --}}
 
                     </div>
 
