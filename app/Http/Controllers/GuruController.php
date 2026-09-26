@@ -32,25 +32,29 @@ class GuruController extends Controller
     // =========================
     public function store(Request $request)
     {
-        $validate = $request->validate([
+        $request->validate([
             'nama_guru' => 'required|string|max:255',
-            'nip' => 'required|string|max:255',
+            'nip' => 'nullable|string|max:255',
             'mapel' => 'required|string|max:255',
             'foto' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
+        $guru = new Guru();
+
+        $guru->nama_guru = $request->nama_guru;
+        $guru->nip = $request->nip;
+        $guru->mapel = $request->mapel;
+
         if ($request->hasFile('foto')) {
-            $validate['foto'] = $request->file('foto')
-                ->store('guru', 'public');
+            $guru->foto = $request->file('foto')->store('guru', 'public');
         }
 
-        Guru::create($validate);
+        $guru->save();
 
         return redirect()
             ->route('admin.guru')
             ->with('success', 'Data guru berhasil ditambahkan.');
     }
-
     // =========================
     // HALAMAN EDIT GURU
     // =========================
@@ -58,43 +62,38 @@ class GuruController extends Controller
     {
         $guru = Guru::findOrFail($id);
 
-        return view('admin.guru.edit', compact('guru'));
+        return view('admin.guru_edit', compact('guru'));
     }
 
 
-    // =========================
+   // =========================
     // UPDATE GURU
     // =========================
     public function update(Request $request, $id)
     {
         $guru = Guru::findOrFail($id);
 
-        $validate = $request->validate([
-            'nama_guru' => 'required|string|max:40',
-            'nip'       => 'required|string|max:15',
-            'mapel'     => 'required|string|max:40',
+        $request->validate([
+            'nama_guru' => 'required|string|max:255',
+            'nip'       => 'required|string|max:255',
+            'mapel'     => 'required|string|max:255',
             'foto'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
-        // Kalau upload foto baru
+        $guru->nama_guru = $request->nama_guru;
+        $guru->nip = $request->nip;
+        $guru->mapel = $request->mapel;
+
         if ($request->hasFile('foto')) {
 
-            // Hapus foto lama
-            if ($guru->foto) {
+            if ($guru->foto && Storage::disk('public')->exists($guru->foto)) {
                 Storage::disk('public')->delete($guru->foto);
             }
 
-            // Simpan foto baru
-            $validate['foto'] = $request
-                ->file('foto')
-                ->store('guru', 'public');
-        } else {
-
-            // Jangan ubah foto lama
-            unset($validate['foto']);
+            $guru->foto = $request->file('foto')->store('guru', 'public');
         }
 
-        $guru->update($validate);
+        $guru->save();
 
         return redirect()
             ->route('admin.guru')
@@ -105,11 +104,12 @@ class GuruController extends Controller
     // =========================
     // HAPUS GURU
     // =========================
+
     public function destroy($id)
     {
         $guru = Guru::findOrFail($id);
 
-        if ($guru->foto) {
+        if ($guru->foto && Storage::disk('public')->exists($guru->foto)) {
             Storage::disk('public')->delete($guru->foto);
         }
 

@@ -13,6 +13,7 @@
     </title>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 
     <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet">
@@ -44,48 +45,95 @@
             border-radius: 20px;
             padding: 30px;
         }
+
+        /* LOGO SIDEBAR */
+        .sidebar-logo {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .sidebar-brand {
+            height: 78px;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar-brand-link {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding-left: 28px;
+            padding-right: 20px;
+            text-decoration: none;
+        }
+
+        .sidebar-brand-text {
+            margin-left: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #344767;
+            white-space: nowrap;
+        }
     </style>
 </head>
 
+
 <body class="m-0 font-sans antialiased font-normal text-base leading-default bg-gray-50 text-slate-500">
 
+
+    <!-- ===================================================== -->
     <!-- SIDEBAR -->
-    <aside class="max-w-62.5 ease-nav-brand z-990 fixed inset-y-0 my-4 ml-4 block w-full
+    <!-- ===================================================== -->
+
+    <aside
+        class="max-w-62.5 ease-nav-brand z-990 fixed inset-y-0 my-4 ml-4 block w-full
         -translate-x-full flex-wrap items-center justify-between overflow-y-auto
         rounded-2xl border-0 bg-white p-0 antialiased shadow-none
         transition-transform duration-200 xl:left-0 xl:translate-x-0
         xl:bg-transparent">
 
-        <div class="h-19.5">
 
-            <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700"
-                href="{{ route('admin.dashboard') }}">
+        <!-- ================= LOGO SIDEBAR ================= -->
 
-               <img
+        <div class="sidebar-brand">
+
+            <a href="{{ route('admin.dashboard') }}"
+                class="sidebar-brand-link">
+
+                <img
                     src="{{ !empty($profile->logo) && file_exists(storage_path('app/public/' . $profile->logo))
                         ? asset('storage/' . $profile->logo)
                         : asset('img/logo-ct.png') }}"
                     alt="Logo Sekolah"
-                    style="
-                        width:100%;
-                        height:100%;
-                        object-fit:contain;
-                        padding:10px;
-                    ">
+                    class="sidebar-logo">
+
+                <span class="sidebar-brand-text">
+                    SMK YPC TASIKMALAYA
+                </span>
 
             </a>
 
         </div>
 
+
         <hr class="h-px mt-0 bg-transparent
             bg-gradient-to-r from-transparent via-black/40 to-transparent">
+
+
+        <!-- ================= MENU ================= -->
 
         <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav">
 
             <ul class="flex flex-col pl-0 mb-0">
 
+
                 <!-- DASHBOARD -->
+
                 <li class="mt-0.5 w-full">
+
                     <a href="{{ route('admin.dashboard') }}"
                         class="py-2.7 text-sm my-0 mx-4 flex items-center
                         whitespace-nowrap px-4 transition-colors">
@@ -102,9 +150,12 @@
                         </span>
 
                     </a>
+
                 </li>
 
+
                 <!-- PROFILE -->
+
                 <li class="mt-0.5 w-full">
 
                     <a href="{{ route('admin.profile') }}"
@@ -128,7 +179,9 @@
 
                 </li>
 
+
                 <!-- GURU -->
+
                 <li class="mt-0.5 w-full">
 
                     <a href="{{ route('admin.guru') }}"
@@ -150,7 +203,9 @@
 
                 </li>
 
+
                 <!-- SISWA -->
+
                 <li class="mt-0.5 w-full">
 
                     <a href="{{ route('admin.siswa') }}"
@@ -172,7 +227,9 @@
 
                 </li>
 
+
                 <!-- BERITA -->
+
                 <li class="mt-0.5 w-full">
 
                     <a href="{{ route('admin.berita') }}"
@@ -194,7 +251,9 @@
 
                 </li>
 
+
                 <!-- EKSTRAKURIKULER -->
+
                 <li class="mt-0.5 w-full">
 
                     <a href="{{ route('admin.ekstrakulikuler') }}"
@@ -216,7 +275,9 @@
 
                 </li>
 
+
                 <!-- GALERI -->
+
                 <li class="mt-0.5 w-full">
 
                     <a href="{{ route('admin.galeri') }}"
@@ -245,11 +306,16 @@
     </aside>
 
 
+    <!-- ===================================================== -->
     <!-- KONTEN UTAMA -->
+    <!-- ===================================================== -->
+
     <div class="ease-soft-in-out xl:ml-68.5 relative h-full
         bg-gray-50 transition-all duration-200">
 
-        <!-- NAVBAR -->
+
+        <!-- ================= NAVBAR ================= -->
+
         <nav class="absolute z-20 flex flex-wrap items-center
             justify-between w-full px-6 py-2 text-white">
 
@@ -290,6 +356,7 @@
 
                 </div>
 
+
                 <div class="flex items-center mt-2">
 
                     <input type="text"
@@ -301,6 +368,7 @@
                         class="ml-5 font-semibold text-white text-sm">
 
                         <i class="fa fa-user mr-1"></i>
+
                         Masuk
 
                     </a>
@@ -312,10 +380,12 @@
         </nav>
 
 
-        <!-- BANNER -->
+        <!-- ================= BANNER ================= -->
+
         <div class="w-full px-6 mx-auto pt-20">
 
-            <div class="relative flex items-center p-0 mt-6 overflow-hidden
+            <div
+                class="relative flex items-center p-0 mt-6 overflow-hidden
                 bg-center bg-cover min-h-75 rounded-2xl"
                 style="
                     background-image:
@@ -332,13 +402,16 @@
             </div>
 
 
-            <!-- FOTO + NAMA -->
+            <!-- ================= FOTO + NAMA ================= -->
+
             <div class="relative flex flex-col min-w-0 p-4 mx-6 -mt-16
                 overflow-hidden bg-white border-0 shadow-blur rounded-2xl z-20">
 
                 <div class="flex items-center">
 
+
                     <!-- LOGO SEKOLAH -->
+
                     <div style="
                         position:relative;
                         width:120px;
@@ -351,7 +424,7 @@
                         background:#f8fafc;
                     ">
 
-                        <!-- FOTO -->
+
                         <img
                             src="{{ !empty($profile->logo) && file_exists(storage_path('app/public/' . $profile->logo))
                                 ? asset('storage/' . $profile->logo)
@@ -364,7 +437,9 @@
                                 padding:10px;
                             ">
 
-                        <!-- FORM UPLOAD SATU-SATUNYA -->
+
+                        <!-- FORM UPLOAD -->
+
                         <form id="form-upload-foto"
                             action="{{ route('admin.profile.photo') }}"
                             method="POST"
@@ -381,7 +456,6 @@
                                 onchange="document.getElementById('form-upload-foto').submit();">
 
 
-                            <!-- TOMBOL GANTI FOTO -->
                             <label for="upload-logo-input"
                                 style="
                                     position:absolute;
@@ -415,6 +489,7 @@
 
 
                     <!-- NAMA SEKOLAH -->
+
                     <div class="ml-5">
 
                         <h5 class="mb-1 font-bold text-slate-700 text-xl">
@@ -445,10 +520,16 @@
         </div>
 
 
+        <!-- ===================================================== -->
         <!-- INFORMASI SEKOLAH -->
+        <!-- ===================================================== -->
+
         <div class="w-full px-6 mx-auto mt-6">
 
             <div class="flex flex-wrap -mx-3">
+
+
+                <!-- INFORMASI -->
 
                 <div class="w-full px-3 lg:w-8/12">
 
@@ -456,13 +537,16 @@
                         break-words bg-white border-0
                         shadow-soft-xl rounded-2xl p-6">
 
+
                         <!-- HEADER -->
+
                         <div class="flex items-center justify-between
                             pb-4 border-b border-gray-200">
 
                             <h6 class="font-bold text-slate-700 mb-0">
                                 Informasi Sekolah
                             </h6>
+
 
                             <button type="button"
                                 onclick="bukaModal()"
@@ -472,6 +556,7 @@
                                 to-pink-500 rounded-lg">
 
                                 <i class="fas fa-edit mr-1"></i>
+
                                 Edit Profile
 
                             </button>
@@ -480,6 +565,7 @@
 
 
                         <!-- DESKRIPSI -->
+
                         <div class="pt-4">
 
                             <p class="text-sm leading-normal
@@ -492,6 +578,7 @@
 
                             <div class="grid grid-cols-1 md:grid-cols-2
                                 gap-x-8 gap-y-5">
+
 
                                 <div>
 
@@ -572,6 +659,7 @@
 
 
                             <!-- ALAMAT -->
+
                             <div class="mt-6">
 
                                 <span class="text-xs font-bold
@@ -597,7 +685,8 @@
                 </div>
 
 
-                <!-- VISI MISI -->
+                <!-- ================= VISI MISI ================= -->
+
                 <div class="w-full px-3 mt-6 lg:w-4/12 lg:mt-0">
 
                     <div class="relative flex flex-col h-full min-w-0
@@ -627,7 +716,8 @@
         </div>
 
 
-        <!-- FOOTER -->
+        <!-- ================= FOOTER ================= -->
+
         <footer class="mt-8 px-6 pb-6">
 
             <div class="flex flex-wrap items-center
@@ -661,7 +751,10 @@
     </div>
 
 
+    <!-- ===================================================== -->
     <!-- MODAL EDIT PROFILE -->
+    <!-- ===================================================== -->
+
     <div id="modalEdit" class="modal-bg">
 
         <div class="modal-box">
@@ -686,17 +779,22 @@
 
 
             <!-- FORM EDIT -->
+
             <form action="{{ route('admin.profile') }}" method="POST">
 
                 @csrf
+
                 @method('PUT')
 
 
                 <!-- NAMA -->
+
                 <div class="mb-4">
 
                     <label class="text-sm font-bold text-slate-600">
+
                         Nama Sekolah
+
                     </label>
 
                     <input type="text"
@@ -710,10 +808,13 @@
 
 
                 <!-- NPSN -->
+
                 <div class="mb-4">
 
                     <label class="text-sm font-bold text-slate-600">
+
                         NPSN
+
                     </label>
 
                     <input type="text"
@@ -726,10 +827,13 @@
 
 
                 <!-- KEPALA -->
+
                 <div class="mb-4">
 
                     <label class="text-sm font-bold text-slate-600">
+
                         Kepala Sekolah
+
                     </label>
 
                     <input type="text"
@@ -742,10 +846,13 @@
 
 
                 <!-- TAHUN -->
+
                 <div class="mb-4">
 
                     <label class="text-sm font-bold text-slate-600">
+
                         Tahun Berdiri
+
                     </label>
 
                     <input type="number"
@@ -758,10 +865,13 @@
 
 
                 <!-- KONTAK -->
+
                 <div class="mb-4">
 
                     <label class="text-sm font-bold text-slate-600">
+
                         Kontak / Telepon
+
                     </label>
 
                     <input type="text"
@@ -774,10 +884,13 @@
 
 
                 <!-- ALAMAT -->
+
                 <div class="mb-4">
 
                     <label class="text-sm font-bold text-slate-600">
+
                         Alamat
+
                     </label>
 
                     <textarea name="alamat"
@@ -789,10 +902,13 @@
 
 
                 <!-- DESKRIPSI -->
+
                 <div class="mb-4">
 
                     <label class="text-sm font-bold text-slate-600">
+
                         Deskripsi Sekolah
+
                     </label>
 
                     <textarea name="deskripsi"
@@ -805,10 +921,13 @@
 
 
                 <!-- VISI MISI -->
+
                 <div class="mb-6">
 
                     <label class="text-sm font-bold text-slate-600">
+
                         Visi & Misi
+
                     </label>
 
                     <textarea name="visi_misi"
@@ -821,6 +940,7 @@
 
 
                 <!-- BUTTON -->
+
                 <div class="flex justify-end gap-3">
 
                     <button type="button"
@@ -852,27 +972,41 @@
     </div>
 
 
-    <!-- JAVASCRIPT -->
+    <!-- ================= JAVASCRIPT ================= -->
+
     <script>
 
         function bukaModal() {
-            document.getElementById('modalEdit').classList.add('show');
+
+            document
+                .getElementById('modalEdit')
+                .classList
+                .add('show');
+
         }
+
 
         function tutupModal() {
-            document.getElementById('modalEdit').classList.remove('show');
+
+            document
+                .getElementById('modalEdit')
+                .classList
+                .remove('show');
+
         }
 
-        document.getElementById('modalEdit').addEventListener(
-            'click',
-            function(event) {
+
+        document
+            .getElementById('modalEdit')
+            .addEventListener('click', function(event) {
 
                 if (event.target === this) {
+
                     tutupModal();
+
                 }
 
-            }
-        );
+            });
 
     </script>
 

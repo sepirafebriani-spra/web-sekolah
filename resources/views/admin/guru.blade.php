@@ -36,12 +36,78 @@
             justify-content: center;
             color: #94a3b8;
         }
+
+        /* TOMBOL AKSI */
+        .btn-edit-guru {
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            min-width: 75px;
+            height: 36px;
+            padding: 0 12px;
+            border-radius: 8px;
+            background: #3b82f6 !important;
+            color: white !important;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none !important;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .btn-edit-guru:hover {
+            background: #2563eb !important;
+            color: white !important;
+        }
+
+        .btn-hapus-guru {
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            min-width: 75px;
+            height: 36px;
+            padding: 0 12px;
+            border-radius: 8px;
+            background: #ef4444 !important;
+            color: white !important;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none !important;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .btn-hapus-guru:hover {
+            background: #dc2626 !important;
+            color: white !important;
+        }
+
+        .kolom-aksi {
+            width: 190px !important;
+            min-width: 190px !important;
+            text-align: center !important;
+        }
+
+        .aksi-wrapper {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 8px !important;
+            width: 100%;
+            min-width: 170px;
+        }
     </style>
 </head>
 
+
 <body class="m-0 font-sans antialiased font-normal text-base leading-default bg-gray-50 text-slate-500">
 
-    <!-- ================= SIDEBAR ================= -->
+
+    <!-- ===================================================== -->
+    <!-- SIDEBAR -->
+    <!-- ===================================================== -->
 
     <aside
         class="max-w-62.5 ease-nav-brand z-990 fixed inset-y-0 my-4 ml-4 block w-full
@@ -50,13 +116,16 @@
         transition-transform duration-200 xl:left-0 xl:translate-x-0
         xl:bg-transparent">
 
+
         <!-- LOGO -->
         <div class="h-19.5">
 
-            <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700"
+            <a
+                class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700"
                 href="{{ route('admin.dashboard') }}">
 
-                <img src="{{ asset('img/logo-ct.png') }}"
+                <img
+                    src="{{ asset('img/logo-ct.png') }}"
                     class="inline h-full max-w-full max-h-8"
                     alt="logo">
 
@@ -68,18 +137,23 @@
 
         </div>
 
-        <hr class="h-px mt-0 bg-transparent
+
+        <hr
+            class="h-px mt-0 bg-transparent
             bg-gradient-to-r from-transparent via-black/40 to-transparent">
+
 
         <!-- MENU -->
         <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav">
 
             <ul class="flex flex-col pl-0 mb-0">
 
+
                 <!-- DASHBOARD -->
                 <li class="mt-0.5 w-full">
 
-                    <a href="{{ route('admin.dashboard') }}"
+                    <a
+                        href="{{ route('admin.dashboard') }}"
                         class="py-2.7 text-sm my-0 mx-4 flex items-center
                         whitespace-nowrap px-4">
 
@@ -99,10 +173,12 @@
 
                 </li>
 
+
                 <!-- PROFILE -->
                 <li class="mt-0.5 w-full">
 
-                    <a href="{{ route('admin.profile') }}"
+                    <a
+                        href="{{ route('admin.profile') }}"
                         class="py-2.7 text-sm my-0 mx-4 flex items-center
                         whitespace-nowrap px-4">
 
@@ -122,10 +198,12 @@
 
                 </li>
 
+
                 <!-- GURU AKTIF -->
                 <li class="mt-0.5 w-full">
 
-                    <a href="{{ route('admin.guru') }}"
+                    <a
+                        href="{{ route('admin.guru') }}"
                         class="py-2.7 shadow-soft-xl text-sm my-0 mx-4
                         flex items-center whitespace-nowrap rounded-lg
                         bg-white px-4 font-semibold text-slate-700">
@@ -147,10 +225,12 @@
 
                 </li>
 
+
                 <!-- SISWA -->
                 <li class="mt-0.5 w-full">
 
-                    <a href="#"
+                    <a
+                        href="#"
                         class="py-2.7 text-sm my-0 mx-4 flex items-center
                         whitespace-nowrap px-4">
 
@@ -170,10 +250,12 @@
 
                 </li>
 
+
                 <!-- BERITA -->
                 <li class="mt-0.5 w-full">
 
-                    <a href="#"
+                    <a
+                        href="#"
                         class="py-2.7 text-sm my-0 mx-4 flex items-center
                         whitespace-nowrap px-4">
 
@@ -193,10 +275,12 @@
 
                 </li>
 
+
                 <!-- EKSTRAKURIKULER -->
                 <li class="mt-0.5 w-full">
 
-                    <a href="#"
+                    <a
+                        href="#"
                         class="py-2.7 text-sm my-0 mx-4 flex items-center
                         whitespace-nowrap px-4">
 
@@ -216,10 +300,12 @@
 
                 </li>
 
+
                 <!-- GALERI -->
                 <li class="mt-0.5 w-full">
 
-                    <a href="#"
+                    <a
+                        href="#"
                         class="py-2.7 text-sm my-0 mx-4 flex items-center
                         whitespace-nowrap px-4">
 
@@ -246,27 +332,35 @@
     </aside>
 
 
-    <!-- ================= KONTEN ================= -->
+
+    <!-- ===================================================== -->
+    <!-- KONTEN UTAMA -->
+    <!-- ===================================================== -->
 
     <main
         class="ease-soft-in-out xl:ml-68.5 relative h-full
         max-h-screen bg-gray-50 transition-all duration-200">
 
+
         <!-- NAVBAR -->
-        <nav class="absolute z-20 flex flex-wrap items-center
+        <nav
+            class="absolute z-20 flex flex-wrap items-center
             justify-between w-full px-6 py-2 text-white">
 
-            <div class="flex items-center justify-between
+            <div
+                class="flex items-center justify-between
                 w-full px-6 py-1 mx-auto">
 
                 <div>
 
-                    <ol class="flex flex-wrap pt-1 pl-2 pr-4
+                    <ol
+                        class="flex flex-wrap pt-1 pl-2 pr-4
                         mr-12 bg-transparent rounded-lg">
 
                         <li class="leading-normal text-sm">
 
-                            <a class="opacity-50"
+                            <a
+                                class="opacity-50"
                                 href="{{ route('admin.dashboard') }}">
 
                                 Pages
@@ -286,8 +380,12 @@
 
                     </ol>
 
-                    <h6 class="mb-2 ml-2 font-bold text-white capitalize">
+
+                    <h6
+                        class="mb-2 ml-2 font-bold text-white capitalize">
+
                         Kelola Guru
+
                     </h6>
 
                 </div>
@@ -297,7 +395,10 @@
         </nav>
 
 
-        <!-- ================= BANNER ================= -->
+
+        <!-- ===================================================== -->
+        <!-- BANNER -->
+        <!-- ===================================================== -->
 
         <div class="w-full px-6 mx-auto pt-20">
 
@@ -305,7 +406,8 @@
                 class="relative flex items-center p-0 mt-6 overflow-hidden
                 bg-center bg-cover min-h-75 rounded-2xl">
 
-                <img src="{{ asset('img/curved-images/curved0.jpg') }}"
+                <img
+                    src="{{ asset('img/curved-images/curved0.jpg') }}"
                     class="absolute inset-0 w-full h-full object-cover"
                     alt="Banner">
 
@@ -314,6 +416,7 @@
                     bg-gradient-to-tl from-purple-700 to-pink-500
                     opacity-60">
                 </span>
+
 
                 <div class="relative z-20 px-8">
 
@@ -332,7 +435,10 @@
         </div>
 
 
-        <!-- ================= DATA GURU ================= -->
+
+        <!-- ===================================================== -->
+        <!-- DATA GURU -->
+        <!-- ===================================================== -->
 
         <div class="w-full px-6 mx-auto mt-6">
 
@@ -341,9 +447,10 @@
                 break-words bg-white border-0 shadow-soft-xl
                 rounded-2xl">
 
-                <!-- HEADER -->
 
-                <div class="flex items-center justify-between
+                <!-- HEADER -->
+                <div
+                    class="flex items-center justify-between
                     p-6 pb-4 border-b border-gray-200">
 
                     <div>
@@ -359,12 +466,20 @@
                     </div>
 
 
-                    <!-- TOMBOL TAMBAH GURU -->
-
-                    <a href="{{ route('admin.guru.create') }}"
-                        class="px-5 py-3 text-xs font-bold
-                        text-white uppercase rounded-lg
-                        bg-gradient-to-tl from-purple-700 to-pink-500">
+                    <!-- TAMBAH GURU -->
+                    <a
+                        href="{{ route('admin.guru.create') }}"
+                        style="
+                            display:inline-flex;
+                            align-items:center;
+                            padding:12px 20px;
+                            background:linear-gradient(135deg,#7e22ce,#ec4899);
+                            color:white;
+                            border-radius:8px;
+                            font-size:12px;
+                            font-weight:700;
+                            text-decoration:none;
+                        ">
 
                         <i class="fas fa-plus mr-1"></i>
                         Tambah Guru
@@ -374,8 +489,8 @@
                 </div>
 
 
-                <!-- SUCCESS -->
 
+                <!-- SUCCESS -->
                 @if (session('success'))
 
                     <div
@@ -392,8 +507,8 @@
                 @endif
 
 
-                <!-- ERROR -->
 
+                <!-- ERROR -->
                 @if ($errors->any())
 
                     <div
@@ -414,14 +529,21 @@
                 @endif
 
 
-                <!-- ================= TABLE ================= -->
+
+                <!-- ===================================================== -->
+                <!-- TABLE -->
+                <!-- ===================================================== -->
 
                 <div class="flex-auto p-6">
 
                     <div class="overflow-x-auto">
 
-                        <table class="items-center w-full mb-0 align-top border-collapse">
+                        <table
+                            class="items-center w-full mb-0 align-top border-collapse"
+                            style="min-width:900px;">
 
+
+                            <!-- HEADER -->
                             <thead>
 
                                 <tr>
@@ -430,42 +552,60 @@
                                         class="px-6 py-3 text-left
                                         text-xxs font-bold uppercase
                                         text-slate-400">
+
                                         No
+
                                     </th>
+
 
                                     <th
                                         class="px-6 py-3 text-left
                                         text-xxs font-bold uppercase
                                         text-slate-400">
+
                                         Foto
+
                                     </th>
+
 
                                     <th
                                         class="px-6 py-3 text-left
                                         text-xxs font-bold uppercase
                                         text-slate-400">
+
                                         Nama Guru
+
                                     </th>
+
 
                                     <th
                                         class="px-6 py-3 text-left
                                         text-xxs font-bold uppercase
                                         text-slate-400">
+
                                         NIP
+
                                     </th>
+
 
                                     <th
                                         class="px-6 py-3 text-left
                                         text-xxs font-bold uppercase
                                         text-slate-400">
+
                                         Mata Pelajaran
+
                                     </th>
 
+
                                     <th
-                                        class="px-6 py-3 text-center
-                                        text-xxs font-bold uppercase
+                                        class="kolom-aksi px-6 py-3
+                                        text-center text-xxs
+                                        font-bold uppercase
                                         text-slate-400">
+
                                         Aksi
+
                                     </th>
 
                                 </tr>
@@ -473,14 +613,16 @@
                             </thead>
 
 
+
+                            <!-- DATA -->
                             <tbody>
 
-                                @forelse($guru as $item)
+                                @forelse ($guru as $item)
 
                                     <tr>
 
-                                        <!-- NO -->
 
+                                        <!-- NO -->
                                         <td class="px-6 py-4">
 
                                             <p
@@ -494,8 +636,8 @@
                                         </td>
 
 
-                                        <!-- FOTO -->
 
+                                        <!-- FOTO -->
                                         <td class="px-6 py-4">
 
                                             @if ($item->foto)
@@ -518,8 +660,8 @@
                                         </td>
 
 
-                                        <!-- NAMA -->
 
+                                        <!-- NAMA -->
                                         <td class="px-6 py-4">
 
                                             <p
@@ -533,11 +675,13 @@
                                         </td>
 
 
-                                        <!-- NIP -->
 
+                                        <!-- NIP -->
                                         <td class="px-6 py-4">
 
-                                            <p class="mb-0 text-sm text-slate-500">
+                                            <p
+                                                class="mb-0 text-sm
+                                                text-slate-500">
 
                                                 {{ $item->nip }}
 
@@ -546,11 +690,13 @@
                                         </td>
 
 
-                                        <!-- MAPEL -->
 
+                                        <!-- MAPEL -->
                                         <td class="px-6 py-4">
 
-                                            <p class="mb-0 text-sm text-slate-500">
+                                            <p
+                                                class="mb-0 text-sm
+                                                text-slate-500">
 
                                                 {{ $item->mapel }}
 
@@ -559,49 +705,57 @@
                                         </td>
 
 
-                                        <!-- AKSI -->
 
-                                        <td class="px-6 py-4 text-center">
+                                        <!-- ================================================= -->
+                                        <!-- AKSI EDIT + HAPUS -->
+                                        <!-- ================================================= -->
 
-                                            <div
-                                                class="flex items-center
-                                                justify-center gap-2">
+                                        <td
+                                            class="kolom-aksi px-6 py-4">
+
+                                            <div class="aksi-wrapper">
+
 
                                                 <!-- EDIT -->
-
                                                 <a
                                                     href="{{ route('admin.guru.edit', $item->id) }}"
-                                                    class="px-3 py-2 text-xs
-                                                    font-bold text-white
-                                                    rounded-lg bg-blue-500">
+                                                    class="btn-edit-guru">
 
-                                                    <i class="fas fa-edit"></i>
+                                                    <i class="fas fa-edit"
+                                                        style="margin-right:5px;"></i>
+
+                                                    Edit
 
                                                 </a>
 
 
-                                                <!-- HAPUS -->
 
+                                                <!-- HAPUS -->
                                                 <form
                                                     action="{{ route('admin.guru.destroy', $item->id) }}"
                                                     method="POST"
+                                                    style="display:inline-block; margin:0;"
                                                     onsubmit="return confirm('Yakin ingin menghapus data guru ini?');">
 
                                                     @csrf
-
                                                     @method('DELETE')
+
 
                                                     <button
                                                         type="submit"
-                                                        class="px-3 py-2 text-xs
-                                                        font-bold text-white
-                                                        rounded-lg bg-red-500">
+                                                        class="btn-hapus-guru">
 
-                                                        <i class="fas fa-trash"></i>
+                                                        <i
+                                                            class="fas fa-trash"
+                                                            style="margin-right:5px;">
+                                                        </i>
+
+                                                        Hapus
 
                                                     </button>
 
                                                 </form>
+
 
                                             </div>
 
@@ -609,11 +763,13 @@
 
                                     </tr>
 
+
                                 @empty
 
                                     <tr>
 
-                                        <td colspan="6"
+                                        <td
+                                            colspan="6"
                                             class="px-6 py-10 text-center">
 
                                             <i
@@ -648,6 +804,7 @@
         </div>
 
     </main>
+
 
 
     <!-- JAVASCRIPT -->

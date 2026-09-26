@@ -8,6 +8,8 @@ class Guru extends Model
 {
     protected $table = 'guru';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'nama_guru',
         'nip',

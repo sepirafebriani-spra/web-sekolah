@@ -30,22 +30,24 @@ Route::prefix('admin')->group(function () {
     Route::get('/siswa', [SiswaController::class, 'index'])
         ->name('admin.siswa');
 
-    Route::get('/guru', [GuruController::class, 'index'])
-    ->name('admin.guru');
+    // ================= GURU =================
 
-    Route::get('/guru/create', [GuruController::class, 'create'])
+    Route::get('/admin/guru', [GuruController::class, 'index'])
+        ->name('admin.guru');
+
+    Route::get('/admin/guru/create', [GuruController::class, 'create'])
         ->name('admin.guru.create');
 
-    Route::post('/guru', [GuruController::class, 'store'])
+    Route::post('/admin/guru', [GuruController::class, 'store'])
         ->name('admin.guru.store');
 
-    Route::get('/guru/{id}/edit', [GuruController::class, 'edit'])
+    Route::get('/admin/guru/{id}/edit', [GuruController::class, 'edit'])
         ->name('admin.guru.edit');
 
-    Route::put('/guru/{id}', [GuruController::class, 'update'])
+    Route::put('/admin/guru/{id}', [GuruController::class, 'update'])
         ->name('admin.guru.update');
 
-    Route::delete('/guru/{id}', [GuruController::class, 'destroy'])
+    Route::delete('/admin/guru/{id}', [GuruController::class, 'destroy'])
         ->name('admin.guru.destroy');
 
     Route::get('/galeri', [GaleriController::class, 'index'])
