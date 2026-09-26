@@ -4,15 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\ProfileSekolah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileSekolahController extends Controller
 {
+    // TAMPIL PROFILE
     public function index()
     {
         $profile = ProfileSekolah::first();
 
+        // Kalau belum ada data, buat 1 data kosong
         if (!$profile) {
             $profile = new ProfileSekolah();
+            $profile->save();
         }
 
         return view('admin.profileSekolah', [
@@ -21,44 +25,24 @@ class ProfileSekolahController extends Controller
         ]);
     }
 
-    public function edit()
-    {
-        $profile = ProfileSekolah::first();
 
-        if (!$profile) {
-            $profile = new ProfileSekolah();
-        }
-
-        return view('admin.profile.edit', compact('profile'));
-    }
-
+    // UPDATE DATA PROFILE
     public function update(Request $request)
     {
-        $request->validate([
-            'nama_sekolah' => 'required|string|max:255',
-            'npsn' => 'nullable|string|max:50',
-            'kepala_sekolah' => 'nullable|string|max:255',
-            'tahun_berdiri' => 'nullable|integer',
-            'kontak' => 'nullable|string|max:100',
-            'alamat' => 'nullable|string',
-            'deskripsi' => 'nullable|string',
-            'visi_misi' => 'nullable|string',
-        ]);
-
         $profile = ProfileSekolah::first();
 
         if (!$profile) {
             $profile = new ProfileSekolah();
         }
 
-        $profile->nama_sekolah = $request->nama_sekolah;
-        $profile->npsn = $request->npsn;
+        $profile->nama_sekolah   = $request->nama_sekolah;
+        $profile->npsn           = $request->npsn;
         $profile->kepala_sekolah = $request->kepala_sekolah;
-        $profile->tahun_berdiri = $request->tahun_berdiri;
-        $profile->kontak = $request->kontak;
-        $profile->alamat = $request->alamat;
-        $profile->deskripsi = $request->deskripsi;
-        $profile->visi_misi = $request->visi_misi;
+        $profile->tahun_berdiri  = $request->tahun_berdiri;
+        $profile->kontak         = $request->kontak;
+        $profile->alamat         = $request->alamat;
+        $profile->deskripsi      = $request->deskripsi;
+        $profile->visi_misi      = $request->visi_misi;
 
         $profile->save();
 
@@ -67,27 +51,32 @@ class ProfileSekolahController extends Controller
             ->with('success', 'Profile sekolah berhasil diperbarui.');
     }
 
+
+    // UPDATE LOGO
     public function updatePhoto(Request $request)
-{
-    $request->validate([
-        'logo' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
-    ]);
+    {
+        $request->validate([
+            'logo' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ]);
 
-    $profile = ProfileSekolah::first();
+        $profile = ProfileSekolah::first();
 
-    if (!$profile) {
-        $profile = new ProfileSekolah();
-    }
+        if (!$profile) {
+            $profile = new ProfileSekolah();
+        }
 
-    if ($request->hasFile('logo')) {
-        $path = $request->file('logo')->store('profile', 'public');
+        // Hapus logo lama
+        if ($profile->logo) {
+            Storage::disk('public')->delete($profile->logo);
+        }
 
-        $profile->logo = $path;
+        // Simpan logo baru
+        $profile->logo = $request->file('logo')->store('profile', 'public');
+
         $profile->save();
-    }
 
-    return redirect()
-        ->route('admin.profile')
-        ->with('success', 'Foto profile berhasil diganti.');
-}
+        return redirect()
+            ->route('admin.profile')
+            ->with('success', 'Logo sekolah berhasil diperbarui.');
+    }
 }

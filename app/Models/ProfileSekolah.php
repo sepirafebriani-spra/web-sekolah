@@ -10,8 +10,6 @@ class ProfileSekolah extends Model
 
     protected $primaryKey = 'id_profil';
 
-    public $incrementing = true;
-
     protected $fillable = [
         'nama_sekolah',
         'kepala_sekolah',

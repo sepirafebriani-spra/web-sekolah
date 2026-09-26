@@ -53,15 +53,13 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/berita', [BeritaController::class, 'index'])
         ->name('admin.berita');
-    Route::get('/Profile', [ProfileSekolahController::class, 'index'])
-    ->name('admin.profile');
 
-    Route::put('/Profile', [ProfileSekolahController::class, 'update'])
-        ->name('admin.profile.update');
+    Route::get('/admin/Profile', [ProfileSekolahController::class, 'index'])
+        ->name('admin.profile');
 
-    Route::post('/Profile/photo', [ProfileSekolahController::class, 'updatePhoto'])
+    Route::put('/admin/Profile', [ProfileSekolahController::class, 'update'])
+        ->name('admin.profile');
+
+    Route::post('/admin/Profile/photo', [ProfileSekolahController::class, 'updatePhoto'])
         ->name('admin.profile.photo');
-
-    Route::get('/Profile/{profileSekolah}/edit', [ProfileSekolahController::class, 'edit'])
-        ->name('admin.profile.edit');
 });

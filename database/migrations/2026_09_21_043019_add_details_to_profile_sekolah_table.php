@@ -6,28 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::table('profileSekolah', function (Blueprint $table) {
-            //
-
-             $table->string('principal')->nullable()->after('npsn');
-             $table->string('website')->nullable()->after('email');
-             $table->string('logo')->nullable()->after('descriptin');
-             $table->string('school_photo')->nullable()->after('npsn');
+        Schema::table('profil_sekolah', function (Blueprint $table) {
+            $table->string('principal')->nullable()->after('kepala_sekolah');
+            $table->string('website')->nullable()->after('kontak');
+            $table->string('school_photo')->nullable()->after('foto');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::table('profileSekolah', function (Blueprint $table) {
-            //
+        Schema::table('profil_sekolah', function (Blueprint $table) {
+            $table->dropColumn([
+                'principal',
+                'website',
+                'school_photo',
+            ]);
         });
     }
 };

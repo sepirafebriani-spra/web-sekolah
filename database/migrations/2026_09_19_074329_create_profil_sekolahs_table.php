@@ -6,12 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('ProfileSekolah', function (Blueprint $table) {
+        Schema::table('profil_sekolahs', function (Blueprint $table) {
             $table->integer('id_profile')->autoIncrement();
             $table->string('nama_sekolah');
             $table->string('kepala_sekolah');
@@ -27,11 +24,8 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('profiles');
+        Schema::dropIfExists('profileSekolah');
     }
 };
