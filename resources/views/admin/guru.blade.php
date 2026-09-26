@@ -5,22 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="apple-touch-icon" sizes="76x76"
-        href="{{ asset('img/apple-icon.png') }}">
-
-    <link rel="icon" type="image/png"
-        href="{{ asset('img/favicon.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('img/apple-icon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
 
     <title>Kelola Guru</title>
 
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 
-    <script
-        src="https://kit.fontawesome.com/42d5adcbca.js"
-        crossorigin="anonymous">
-    </script>
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 
     <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet">
@@ -51,7 +43,8 @@
 
     <!-- ================= SIDEBAR ================= -->
 
-    <aside class="max-w-62.5 ease-nav-brand z-990 fixed inset-y-0 my-4 ml-4 block w-full
+    <aside
+        class="max-w-62.5 ease-nav-brand z-990 fixed inset-y-0 my-4 ml-4 block w-full
         -translate-x-full flex-wrap items-center justify-between overflow-y-auto
         rounded-2xl border-0 bg-white p-0 antialiased shadow-none
         transition-transform duration-200 xl:left-0 xl:translate-x-0
@@ -60,12 +53,10 @@
         <!-- LOGO -->
         <div class="h-19.5">
 
-            <a
-                class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700"
+            <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700"
                 href="{{ route('admin.dashboard') }}">
 
-                <img
-                    src="{{ asset('img/logo-ct.png') }}"
+                <img src="{{ asset('img/logo-ct.png') }}"
                     class="inline h-full max-w-full max-h-8"
                     alt="logo">
 
@@ -88,12 +79,12 @@
                 <!-- DASHBOARD -->
                 <li class="mt-0.5 w-full">
 
-                    <a
-                        href="{{ route('admin.dashboard') }}"
+                    <a href="{{ route('admin.dashboard') }}"
                         class="py-2.7 text-sm my-0 mx-4 flex items-center
                         whitespace-nowrap px-4">
 
-                        <div class="mr-2 flex h-8 w-8 items-center justify-center
+                        <div
+                            class="mr-2 flex h-8 w-8 items-center justify-center
                             rounded-lg bg-white shadow-soft-2xl">
 
                             <i class="fas fa-home text-slate-800 text-xs"></i>
@@ -111,12 +102,12 @@
                 <!-- PROFILE -->
                 <li class="mt-0.5 w-full">
 
-                    <a
-                        href="{{ route('admin.profile') }}"
+                    <a href="{{ route('admin.profile') }}"
                         class="py-2.7 text-sm my-0 mx-4 flex items-center
                         whitespace-nowrap px-4">
 
-                        <div class="mr-2 flex h-8 w-8 items-center justify-center
+                        <div
+                            class="mr-2 flex h-8 w-8 items-center justify-center
                             rounded-lg bg-white shadow-soft-2xl">
 
                             <i class="fas fa-school text-slate-800 text-xs"></i>
@@ -134,13 +125,13 @@
                 <!-- GURU AKTIF -->
                 <li class="mt-0.5 w-full">
 
-                    <a
-                        href="{{ route('admin.guru') }}"
+                    <a href="{{ route('admin.guru') }}"
                         class="py-2.7 shadow-soft-xl text-sm my-0 mx-4
                         flex items-center whitespace-nowrap rounded-lg
                         bg-white px-4 font-semibold text-slate-700">
 
-                        <div class="bg-gradient-to-tl from-purple-700 to-pink-500
+                        <div
+                            class="bg-gradient-to-tl from-purple-700 to-pink-500
                             shadow-soft-2xl mr-2 flex h-8 w-8
                             items-center justify-center rounded-lg">
 
@@ -159,12 +150,12 @@
                 <!-- SISWA -->
                 <li class="mt-0.5 w-full">
 
-                    <a
-                        href="#"
+                    <a href="#"
                         class="py-2.7 text-sm my-0 mx-4 flex items-center
                         whitespace-nowrap px-4">
 
-                        <div class="mr-2 flex h-8 w-8 items-center justify-center
+                        <div
+                            class="mr-2 flex h-8 w-8 items-center justify-center
                             rounded-lg bg-white shadow-soft-2xl">
 
                             <i class="fas fa-user-graduate text-slate-800 text-xs"></i>
@@ -182,12 +173,12 @@
                 <!-- BERITA -->
                 <li class="mt-0.5 w-full">
 
-                    <a
-                        href="#"
+                    <a href="#"
                         class="py-2.7 text-sm my-0 mx-4 flex items-center
                         whitespace-nowrap px-4">
 
-                        <div class="mr-2 flex h-8 w-8 items-center justify-center
+                        <div
+                            class="mr-2 flex h-8 w-8 items-center justify-center
                             rounded-lg bg-white shadow-soft-2xl">
 
                             <i class="fas fa-newspaper text-slate-800 text-xs"></i>
@@ -205,12 +196,12 @@
                 <!-- EKSTRAKURIKULER -->
                 <li class="mt-0.5 w-full">
 
-                    <a
-                        href="#"
+                    <a href="#"
                         class="py-2.7 text-sm my-0 mx-4 flex items-center
                         whitespace-nowrap px-4">
 
-                        <div class="mr-2 flex h-8 w-8 items-center justify-center
+                        <div
+                            class="mr-2 flex h-8 w-8 items-center justify-center
                             rounded-lg bg-white shadow-soft-2xl">
 
                             <i class="fas fa-users text-slate-800 text-xs"></i>
@@ -228,12 +219,12 @@
                 <!-- GALERI -->
                 <li class="mt-0.5 w-full">
 
-                    <a
-                        href="#"
+                    <a href="#"
                         class="py-2.7 text-sm my-0 mx-4 flex items-center
                         whitespace-nowrap px-4">
 
-                        <div class="mr-2 flex h-8 w-8 items-center justify-center
+                        <div
+                            class="mr-2 flex h-8 w-8 items-center justify-center
                             rounded-lg bg-white shadow-soft-2xl">
 
                             <i class="fas fa-images text-slate-800 text-xs"></i>
@@ -257,11 +248,11 @@
 
     <!-- ================= KONTEN ================= -->
 
-    <main class="ease-soft-in-out xl:ml-68.5 relative h-full
+    <main
+        class="ease-soft-in-out xl:ml-68.5 relative h-full
         max-h-screen bg-gray-50 transition-all duration-200">
 
         <!-- NAVBAR -->
-
         <nav class="absolute z-20 flex flex-wrap items-center
             justify-between w-full px-6 py-2 text-white">
 
@@ -275,8 +266,7 @@
 
                         <li class="leading-normal text-sm">
 
-                            <a
-                                class="opacity-50"
+                            <a class="opacity-50"
                                 href="{{ route('admin.dashboard') }}">
 
                                 Pages
@@ -285,7 +275,8 @@
 
                         </li>
 
-                        <li class="text-sm pl-2 capitalize leading-normal
+                        <li
+                            class="text-sm pl-2 capitalize leading-normal
                             before:float-left before:pr-2
                             before:content-['/']">
 
@@ -296,9 +287,7 @@
                     </ol>
 
                     <h6 class="mb-2 ml-2 font-bold text-white capitalize">
-
                         Kelola Guru
-
                     </h6>
 
                 </div>
@@ -312,14 +301,16 @@
 
         <div class="w-full px-6 mx-auto pt-20">
 
-            <div class="relative flex items-center p-0 mt-6 overflow-hidden
+            <div
+                class="relative flex items-center p-0 mt-6 overflow-hidden
                 bg-center bg-cover min-h-75 rounded-2xl">
 
-                <img
-                    src="{{ asset('img/curved-images/curved0.jpg') }}"
-                    class="absolute inset-0 w-full h-full object-cover">
+                <img src="{{ asset('img/curved-images/curved0.jpg') }}"
+                    class="absolute inset-0 w-full h-full object-cover"
+                    alt="Banner">
 
-                <span class="absolute inset-0 z-10
+                <span
+                    class="absolute inset-0 z-10
                     bg-gradient-to-tl from-purple-700 to-pink-500
                     opacity-60">
                 </span>
@@ -345,7 +336,8 @@
 
         <div class="w-full px-6 mx-auto mt-6">
 
-            <div class="relative flex flex-col min-w-0
+            <div
+                class="relative flex flex-col min-w-0
                 break-words bg-white border-0 shadow-soft-xl
                 rounded-2xl">
 
@@ -366,11 +358,10 @@
 
                     </div>
 
-                    <!-- TOMBOL TAMBAH -->
 
-                    <button
-                        type="button"
-                        onclick="document.getElementById('formTambahGuru').classList.remove('hidden')"
+                    <!-- TOMBOL TAMBAH GURU -->
+
+                    <a href="{{ route('admin.guru.create') }}"
                         class="px-5 py-3 text-xs font-bold
                         text-white uppercase rounded-lg
                         bg-gradient-to-tl from-purple-700 to-pink-500">
@@ -378,161 +369,17 @@
                         <i class="fas fa-plus mr-1"></i>
                         Tambah Guru
 
-                    </button>
-
-                </div>
-
-
-                <!-- ================= FORM TAMBAH GURU ================= -->
-
-                <div id="formTambahGuru"
-                    class="hidden p-6 border-b border-gray-200">
-
-                    <div class="mb-5">
-
-                        <h6 class="font-bold text-slate-700">
-                            Tambah Data Guru
-                        </h6>
-
-                        <p class="text-sm text-slate-400">
-                            Isi data guru di bawah ini
-                        </p>
-
-                    </div>
-
-                    <form
-                        action="{{ route('admin.guru.store') }}"
-                        method="POST"
-                        enctype="multipart/form-data">
-
-                        @csrf
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-
-                            <!-- NAMA -->
-
-                            <div>
-
-                                <label class="text-sm font-bold text-slate-700">
-                                    Nama Guru
-                                </label>
-
-                                <input
-                                    type="text"
-                                    name="nama_guru"
-                                    value="{{ old('nama_guru') }}"
-                                    required
-                                    class="w-full px-4 py-3 mt-2
-                                    text-sm border border-gray-300
-                                    rounded-lg focus:outline-none"
-                                    placeholder="Masukkan nama guru">
-
-                            </div>
-
-
-                            <!-- NIP -->
-
-                            <div>
-
-                                <label class="text-sm font-bold text-slate-700">
-                                    NIP
-                                </label>
-
-                                <input
-                                    type="text"
-                                    name="nip"
-                                    value="{{ old('nip') }}"
-                                    required
-                                    class="w-full px-4 py-3 mt-2
-                                    text-sm border border-gray-300
-                                    rounded-lg focus:outline-none"
-                                    placeholder="Masukkan NIP">
-
-                            </div>
-
-
-                            <!-- MAPEL -->
-
-                            <div>
-
-                                <label class="text-sm font-bold text-slate-700">
-                                    Mata Pelajaran
-                                </label>
-
-                                <input
-                                    type="text"
-                                    name="mapel"
-                                    value="{{ old('mapel') }}"
-                                    required
-                                    class="w-full px-4 py-3 mt-2
-                                    text-sm border border-gray-300
-                                    rounded-lg focus:outline-none"
-                                    placeholder="Masukkan mata pelajaran">
-
-                            </div>
-
-
-                            <!-- FOTO -->
-
-                            <div>
-
-                                <label class="text-sm font-bold text-slate-700">
-                                    Foto Guru
-                                </label>
-
-                                <input
-                                    type="file"
-                                    name="foto"
-                                    accept=".jpg,.jpeg,.png,.webp"
-                                    required
-                                    class="w-full px-4 py-3 mt-2
-                                    text-sm border border-gray-300
-                                    rounded-lg">
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- BUTTON FORM -->
-
-                        <div class="flex gap-3 mt-6">
-
-                            <button
-                                type="submit"
-                                class="px-5 py-3 text-xs font-bold
-                                text-white uppercase rounded-lg
-                                bg-gradient-to-tl from-green-600 to-green-400">
-
-                                <i class="fas fa-save mr-1"></i>
-                                Simpan
-
-                            </button>
-
-                            <button
-                                type="button"
-                                onclick="document.getElementById('formTambahGuru').classList.add('hidden')"
-                                class="px-5 py-3 text-xs font-bold
-                                text-white uppercase rounded-lg
-                                bg-gradient-to-tl from-gray-600 to-gray-400">
-
-                                <i class="fas fa-times mr-1"></i>
-                                Batal
-
-                            </button>
-
-                        </div>
-
-                    </form>
+                    </a>
 
                 </div>
 
 
                 <!-- SUCCESS -->
 
-                @if(session('success'))
+                @if (session('success'))
 
-                    <div class="mx-6 mt-4 px-4 py-3
+                    <div
+                        class="mx-6 mt-4 px-4 py-3
                         text-sm text-green-700
                         bg-green-100 rounded-lg">
 
@@ -547,13 +394,14 @@
 
                 <!-- ERROR -->
 
-                @if($errors->any())
+                @if ($errors->any())
 
-                    <div class="mx-6 mt-4 px-4 py-3
+                    <div
+                        class="mx-6 mt-4 px-4 py-3
                         text-sm text-red-700
                         bg-red-100 rounded-lg">
 
-                        @foreach($errors->all() as $error)
+                        @foreach ($errors->all() as $error)
 
                             <div>
                                 {{ $error }}
@@ -578,37 +426,43 @@
 
                                 <tr>
 
-                                    <th class="px-6 py-3 text-left
+                                    <th
+                                        class="px-6 py-3 text-left
                                         text-xxs font-bold uppercase
                                         text-slate-400">
                                         No
                                     </th>
 
-                                    <th class="px-6 py-3 text-left
+                                    <th
+                                        class="px-6 py-3 text-left
                                         text-xxs font-bold uppercase
                                         text-slate-400">
                                         Foto
                                     </th>
 
-                                    <th class="px-6 py-3 text-left
+                                    <th
+                                        class="px-6 py-3 text-left
                                         text-xxs font-bold uppercase
                                         text-slate-400">
                                         Nama Guru
                                     </th>
 
-                                    <th class="px-6 py-3 text-left
+                                    <th
+                                        class="px-6 py-3 text-left
                                         text-xxs font-bold uppercase
                                         text-slate-400">
                                         NIP
                                     </th>
 
-                                    <th class="px-6 py-3 text-left
+                                    <th
+                                        class="px-6 py-3 text-left
                                         text-xxs font-bold uppercase
                                         text-slate-400">
                                         Mata Pelajaran
                                     </th>
 
-                                    <th class="px-6 py-3 text-center
+                                    <th
+                                        class="px-6 py-3 text-center
                                         text-xxs font-bold uppercase
                                         text-slate-400">
                                         Aksi
@@ -629,7 +483,8 @@
 
                                         <td class="px-6 py-4">
 
-                                            <p class="mb-0 text-sm
+                                            <p
+                                                class="mb-0 text-sm
                                                 font-semibold text-slate-700">
 
                                                 {{ $loop->iteration }}
@@ -643,7 +498,7 @@
 
                                         <td class="px-6 py-4">
 
-                                            @if($item->foto)
+                                            @if ($item->foto)
 
                                                 <img
                                                     src="{{ asset('storage/' . $item->foto) }}"
@@ -667,7 +522,8 @@
 
                                         <td class="px-6 py-4">
 
-                                            <p class="mb-0 text-sm
+                                            <p
+                                                class="mb-0 text-sm
                                                 font-semibold text-slate-700">
 
                                                 {{ $item->nama_guru }}
@@ -707,7 +563,8 @@
 
                                         <td class="px-6 py-4 text-center">
 
-                                            <div class="flex items-center
+                                            <div
+                                                class="flex items-center
                                                 justify-center gap-2">
 
                                                 <!-- EDIT -->
@@ -759,11 +616,13 @@
                                         <td colspan="6"
                                             class="px-6 py-10 text-center">
 
-                                            <i class="fas fa-user-slash
+                                            <i
+                                                class="fas fa-user-slash
                                                 text-4xl text-slate-300">
                                             </i>
 
-                                            <p class="mt-3 mb-0
+                                            <p
+                                                class="mt-3 mb-0
                                                 text-sm text-slate-400">
 
                                                 Belum ada data guru.

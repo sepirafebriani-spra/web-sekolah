@@ -10,49 +10,46 @@ class GuruController extends Controller
 {
     // =========================
     // TAMPIL DATA GURU
-    // =========================
     public function index()
     {
         $guru = Guru::all();
 
-       return view('admin.guru', compact('guru'));
+        return view('admin.guru', compact('guru'));
     }
 
 
     // =========================
     // HALAMAN TAMBAH GURU
     // =========================
-   public function create()
-   {
-      $guru = Guru::all();
-
-      return view('admin.guru', compact('guru'));
-   }
+    public function create()
+    {
+        return view('admin.guru_create');
+    }
 
 
     // =========================
     // SIMPAN GURU
     // =========================
-   public function store(Request $request)
-   {
-    $validate = $request->validate([
-        'nama_guru' => 'required|string|max:40',
-        'nip'       => 'required|string|max:15',
-        'mapel'     => 'required|string|max:40',
-        'foto'      => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
-    ]);
+    public function store(Request $request)
+    {
+        $validate = $request->validate([
+            'nama_guru' => 'required|string|max:255',
+            'nip' => 'required|string|max:255',
+            'mapel' => 'required|string|max:255',
+            'foto' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ]);
 
-    $validate['foto'] = $request
-        ->file('foto')
-        ->store('guru', 'public');
+        if ($request->hasFile('foto')) {
+            $validate['foto'] = $request->file('foto')
+                ->store('guru', 'public');
+        }
 
-    Guru::create($validate);
+        Guru::create($validate);
 
-    return redirect()
-        ->route('admin.guru')
-        ->with('success', 'Data guru berhasil ditambahkan.');
+        return redirect()
+            ->route('admin.guru')
+            ->with('success', 'Data guru berhasil ditambahkan.');
     }
-
 
     // =========================
     // HALAMAN EDIT GURU
