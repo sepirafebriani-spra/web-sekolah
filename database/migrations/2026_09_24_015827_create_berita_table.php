@@ -11,10 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::disableForeignKeyConstraints();
+
         Schema::create('berita', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_berita');
+            $table->string('judul');
+            $table->longText('isi');
+            $table->date('tanggal')->nullable();
+            $table->string('gambar', 255)->nullable();
+
+            // Mengarah ke tabel 'users' bawaan Laravel (kolom 'id')
+            $table->unsignedBigInteger('id_user')->nullable();
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+
             $table->timestamps();
         });
+
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

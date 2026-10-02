@@ -9,8 +9,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('username')->unique()->after('id');
-            $table->string('role')->default('Operator')->after('password');
+            // Tambahkan ->nullable() agar seeder bawaan tidak crash
+            $table->string('username')->nullable()->after('name');
+            $table->string('role')->default('admin')->after('email');
         });
     }
 

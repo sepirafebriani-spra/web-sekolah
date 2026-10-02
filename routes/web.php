@@ -105,14 +105,12 @@ Route::prefix('admin')->group(function () {
         Route::get('/', [GuruController::class, 'index'])
             ->name('admin.guru.index');
 
-        Route::get('/add-edit/{id?}', [GuruController::class, 'addEdit'])
-            ->name('admin.guru.addEdit');
+        Route::get('/add-edit/{id?}', [GuruController::class, 'addEdit'])->name('admin.guru.addEdit');
 
         Route::post('/save/{id?}', [GuruController::class, 'save'])
             ->name('admin.guru.save');
 
-        Route::get('/{id}', [GuruController::class, 'show'])
-            ->name('admin.guru.show');
+        Route::get('/{id}', [GuruController::class, 'show'])->name('admin.guru.show');
 
         Route::delete('/{id}', [GuruController::class, 'destroy'])
            ->name('admin.guru.destroy');
@@ -146,22 +144,11 @@ Route::prefix('admin')->group(function () {
     // BERITA
     // ============================================================
 
-    Route::prefix('berita')->group(function () {
-
-        Route::get('/', [BeritaController::class, 'index'])
-            ->name('admin.berita.index');
-
-        Route::get('/add-edit/{id?}', [BeritaController::class, 'addEdit'])
-            ->name('admin.berita.addEdit');
-
-        Route::post('/save/{id?}', [BeritaController::class, 'save'])
-            ->name('admin.berita.save');
-
-        Route::get('/{id}', [BeritaController::class, 'show'])
-            ->name('admin.berita.show');
-
-        Route::delete('/{id}', [BeritaController::class, 'destroy'])
-            ->name('admin.berita.delete');
-    });
-
+    Route::middleware(['auth'])->prefix('admin/berita')->group(function () {
+    Route::get('/', [BeritaController::class, 'index'])->name('admin.berita.index');
+    Route::get('/add-edit/{id?}', [BeritaController::class, 'addEdit'])->name('admin.berita.addEdit');
+    Route::post('/save/{id?}', [BeritaController::class, 'save'])->name('admin.berita.save');
+    Route::get('/show/{id}', [BeritaController::class, 'show'])->name('admin.berita.show');
+    Route::delete('/delete/{id}', [BeritaController::class, 'destroy'])->name('admin.berita.delete');
+});
 });

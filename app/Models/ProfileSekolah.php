@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProfileSekolah extends Model
 {
-    protected $table = 'profil_sekolah';
+    // Sesuaikan nama tabel dengan nama di migration (pakai akhiran 's')
+    protected $table = 'profil_sekolahs';
 
-    protected $primaryKey = 'id_profil';
+    // Sesuaikan primary key (bawaan migration $table->id() adalah 'id')
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'nama_sekolah',

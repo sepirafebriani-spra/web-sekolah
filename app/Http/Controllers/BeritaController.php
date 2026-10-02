@@ -13,9 +13,10 @@ class BeritaController extends Controller
 {
     public function index()
     {
-        $berita = Berita::with('user')->latest('tanggal')->get();
+    // Menggunakan default created_at
+    $berita = Berita::latest()->get();
 
-        return view('admin.berita.index', compact('berita'));
+    return view('admin.berita.index', compact('berita'));
     }
 
     /**
@@ -42,63 +43,35 @@ class BeritaController extends Controller
      */
     public function save(Request $request, $id = null)
     {
-        // Jika ada ID, berarti sedang mengubah data.
-        if ($id) {
-            try {
-                $id = Crypt::decrypt($id);
-                $berita = Berita::findOrFail($id);
-
-            } catch (\Exception $e) {
-                return redirect()
-                    ->route('admin.berita.index')
-                    ->with('error', 'Data berita tidak ditemukan.');
-            }
-
-        } else {
-            // Jika tidak ada ID, berarti menambah berita baru.
-            $berita = new Berita();
-            $berita->id_user = Auth::id() ?? User::value('id');
-        }
-
-        // Validasi input
+        // Validasi
         $request->validate([
-            'judul'   => 'required|string|max:50',
-            'isi'     => 'required|string',
-            'tanggal' => 'required|date',
-            'gambar'  => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-        ], [
-            'judul.required'   => 'Judul berita wajib diisi.',
-            'judul.max'        => 'Judul maksimal 50 karakter.',
-            'isi.required'     => 'Isi berita wajib diisi.',
-            'tanggal.required' => 'Tanggal publikasi wajib diisi.',
-            'gambar.image'     => 'Gambar harus berupa file gambar (JPG, PNG).',
-            'gambar.max'       => 'Ukuran gambar maksimal 2MB.',
+            'judul'   => 'required',
+            'isi'     => 'required',
+            'tanggal' => 'nullable|date',
+            'gambar'  => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
-        // Masukkan data ke model
+        if ($id) {
+            $realId = Crypt::decrypt($id);
+            $berita = Berita::findOrFail($realId);
+        } else {
+            $berita = new Berita();
+            // Hapus/komentarkan baris id_user jika kolom id_user belum ada di database:
+            // $berita->id_user = auth()->user()->id_user ?? 1;
+        }
+
         $berita->judul   = $request->judul;
         $berita->isi     = $request->isi;
         $berita->tanggal = $request->tanggal;
 
-        // Upload gambar jika disertakan
+        // Upload Gambar
         if ($request->hasFile('gambar')) {
-            if ($berita->gambar && Storage::disk('public')->exists($berita->gambar)) {
-                Storage::disk('public')->delete($berita->gambar);
-            }
             $berita->gambar = $request->file('gambar')->store('berita', 'public');
         }
 
-        // Simpan ke database
-        $berita->save();
+        $berita->save(); //[cite: 5]
 
-        return redirect()
-            ->route('admin.berita.index')
-            ->with(
-                'success',
-                $id
-                    ? 'Data berita berhasil diperbarui.'
-                    : 'Data berita berhasil disimpan.'
-            );
+        return redirect()->route('admin.berita.index')->with('success', 'Data berita berhasil disimpan.');
     }
 
     /**

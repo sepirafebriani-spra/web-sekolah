@@ -19,6 +19,9 @@
     <!-- Nucleo Icons -->
     <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet">
+    <link href="{{ asset('data_table/css/dataTables.bootstrap5.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('data_table/css/dataTables.bootstrap5.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('data_table/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
@@ -209,6 +212,11 @@
     <script src="{{ asset('js/plugins/perfect-scrollbar.min.js') }}" async></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="{{ asset('js/soft-ui-dashboard-tailwind.js?v=1.0.5') }}" async></script>
+    <script src="{{ asset('data_table/js/dataTables.bootstrap5.js') }}" async></script>
+    <script src="{{ asset('data_table/js/dataTables.bootstrap5.min.js') }}" async></script>
+    <script src="{{ asset('data_table/js/dataTables.bootstrap5.min.mjs') }}" async></script>
+    <script src="{{ asset('data_table/js/dataTables.bootstrap5.mjs') }}" async></script>
+
 
     @stack('scripts')
 </body>

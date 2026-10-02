@@ -9,10 +9,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('guru', function (Blueprint $table) {
-            $table->id();
+            // Wajib diset id() atau primaryKey agar memiliki INDEX
+            $table->id('id_guru');
+            $table->string('nip')->unique()->nullable();
             $table->string('nama_guru');
-            $table->string('nip')->nullable();
-            $table->string('mapel');
+            $table->string('mapel')->nullable();
             $table->string('foto')->nullable();
             $table->timestamps();
         });
