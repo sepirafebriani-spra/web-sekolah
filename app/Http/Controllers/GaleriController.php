@@ -11,21 +11,19 @@ class GaleriController extends Controller
 {
     public function index()
     {
-       $galeri = Galeri::latest('tanggal')->get();
+        $galeri = Galeri::latest('tanggal')->get();
 
-       return view('admin.galeri.index', compact('galeri'));
+        return view('admin.galeri.index', compact('galeri'));
     }
 
-    public function addEddit($id = null)
+    public function addEdit($id = null)
     {
-        try{
+        try {
             $galeri = $id
-                ? Galeri::findOrfail(Crypt::decrypt($id))
+                ? Galeri::findOrFail(Crypt::decrypt($id))
                 : null;
         } catch (\Exception $e) {
-            return redirect()
-               ->route('admin.galeri.index')
-               ->with('error', 'Data galeri tidak ditemukan.');
+            return redirect()->route('admin.galeri.index')->with('error', 'Data galeri tidak ditemukan!');
         }
 
         return view('admin.galeri.form', compact('galeri'));
@@ -37,13 +35,11 @@ class GaleriController extends Controller
             try {
                 $id = Crypt::decrypt($id);
                 $galeri = Galeri::findOrFail($id);
-
             } catch (\Exception $e) {
                 return redirect()
                     ->route('admin.galeri.index')
                     ->with('error', 'Data galeri tidak ditemukan.');
             }
-
         } else {
             // Jika tidak ada ID, berarti menambah data baru.
             $galeri = new Galeri();
@@ -94,7 +90,6 @@ class GaleriController extends Controller
     {
         try {
             $galeri = Galeri::findOrFail(Crypt::decrypt($id));
-
         } catch (\Exception $e) {
             return redirect()
                 ->route('admin.galeri.index')
@@ -108,7 +103,6 @@ class GaleriController extends Controller
     {
         try {
             $galeri = Galeri::findOrFail(Crypt::decrypt($id));
-
         } catch (\Exception $e) {
             return redirect()
                 ->route('admin.galeri.index')

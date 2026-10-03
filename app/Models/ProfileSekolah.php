@@ -2,26 +2,23 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class ProfileSekolah extends Model
 {
-    // Sesuaikan nama tabel dengan nama di migration (pakai akhiran 's')
-    protected $table = 'profil_sekolahs';
+    use HasFactory;
 
-    // Sesuaikan primary key (bawaan migration $table->id() adalah 'id')
-    protected $primaryKey = 'id';
+    // HUBUNGKAN KAN KE NAMA TABEL YANG BENAR
+    protected $table = 'profil_sekolahs';
 
     protected $fillable = [
         'nama_sekolah',
-        'kepala_sekolah',
-        'foto',
-        'logo',
-        'npsn',
         'alamat',
-        'kontak',
-        'visi_misi',
-        'tahun_berdiri',
-        'deskripsi',
+        'telepon',
+        'email',
+        'visi',
+        'misi',
+        'logo',
     ];
 }

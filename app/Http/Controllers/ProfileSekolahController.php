@@ -13,14 +13,22 @@ class ProfileSekolahController extends Controller
     {
         $profile = ProfileSekolah::first();
 
-        // Kalau belum ada data, buat 1 data kosong
+        // Jika belum ada data, buat 1 record awal dengan kolom yang sesuai di DB
         if (!$profile) {
-            $profile = new ProfileSekolah();
-            $profile->save();
+            $profile = ProfileSekolah::create([
+                'nama_sekolah' => 'SMK YPC TASIKMALAYA',
+                'alamat'       => '-',
+                // Ganti nama field sesuai kolom di database Anda (misal: 'no_telp') 
+                // Atau HAPUS baris ini jika kolom telepon tidak ada di database
+                'no_telp'      => '-',
+                'email'        => '-',
+                'visi'         => '-',
+                'misi'         => '-',
+            ]);
         }
 
         return view('admin.profileSekolah', [
-            'title' => 'Profile Sekolah',
+            'title'   => 'Profile Sekolah',
             'profile' => $profile
         ]);
     }

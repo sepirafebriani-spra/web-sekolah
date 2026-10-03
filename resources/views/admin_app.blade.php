@@ -115,7 +115,7 @@
 
                 <!-- KELOLA EKSTRAKULIKULER -->
                 <li class="mt-0.5 w-full">
-                    <a href="{{ route('admin.ekstrakulikuler.index') }}" class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors {{ request()->routeIs('admin.ekstrakulikuler*') ? 'bg-white font-semibold text-slate-700 shadow-soft-xl' : '' }}">
+                    <a href="{{ route('admin.ekstrakurikuler.index') }}" class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors {{ request()->routeIs('admin.ekstrakulikuler*') ? 'bg-white font-semibold text-slate-700 shadow-soft-xl' : '' }}">
                         <div class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg {{ request()->routeIs('admin.ekstrakulikuler*') ? 'bg-gradient-to-tl from-purple-700 to-pink-500 text-white' : 'bg-white text-slate-800' }}">
                             <i class="fa fa-user text-xs"></i>
                         </div>

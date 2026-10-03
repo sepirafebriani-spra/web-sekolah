@@ -7,7 +7,7 @@ use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\ProfileSekolahController;
 use App\Http\Controllers\SiswaController;
-use App\Http\Controllers\EkstrakulikulerController;
+use App\Http\Controllers\EkstrakurikulerController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -54,22 +54,22 @@ Route::prefix('admin')->group(function () {
     // EKSTRAKULIKULER
     // ============================================================
 
-    Route::prefix('ekstrakulikuler')->group(function () {
+    Route::prefix('ekstrakurikuler')->group(function () {
 
-        Route::get('/', [EkstrakulikulerController::class, 'index'])
-            ->name('admin.ekstrakulikuler.index');
+        Route::get('/', [EkstrakurikulerController::class, 'index'])
+            ->name('admin.ekstrakurikuler.index');
 
-        Route::get('/add-edit/{id?}', [EkstrakulikulerController::class, 'addEdit'])
-            ->name('admin.ekstrakulikuler.addEdit');
+        Route::get('/add-edit/{id?}', [EkstrakurikulerController::class, 'addEdit'])
+            ->name('admin.ekstrakurikuler.addEdit');
 
-        Route::post('/save/{id?}', [EkstrakulikulerController::class, 'save'])
-            ->name('admin.ekstrakulikuler.save');
+        Route::post('/save/{id?}', [EkstrakurikulerController::class, 'save'])
+            ->name('admin.ekstrakurikuler.save');
 
-        Route::get('/{id}', [EkstrakulikulerController::class, 'show'])
-            ->name('admin.ekstrakulikuler.show');
+        Route::get('/{id}', [EkstrakurikulerController::class, 'show'])
+            ->name('admin.ekstrakurikuler.show');
 
-        Route::delete('/{id}', [EkstrakulikulerController::class, 'destroy'])
-            ->name('admin.ekstrakulikuler.delete');
+        Route::delete('/{id}', [EkstrakurikulerController::class, 'destroy'])
+            ->name('admin.ekstrakurikuler.delete');
     });
 
 

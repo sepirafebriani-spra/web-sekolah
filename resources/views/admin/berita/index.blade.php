@@ -3,86 +3,158 @@
 @section('title', 'Kelola Berita')
 
 @section('content')
-<div style="background-color: #ffffff; padding: 28px; border-radius: 16px; box-shadow: 0 20px 27px 0 rgba(0,0,0,0.05); margin-bottom: 24px;">
-
-    <!-- HEADER & TOMBOL TAMBAH -->
-    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e9ecef; padding-bottom: 16px; margin-bottom: 24px; flex-wrap: wrap; gap: 12px;">
-        <div>
-            <h4 style="margin: 0; font-weight: bold; color: #344767; font-size: 1.25rem;">Data Berita</h4>
-            <p style="margin: 4px 0 0 0; color: #8392ab; font-size: 0.875rem;">Kelola artikel dan berita sekolah SMK YPC Tasikmalaya.</p>
+    <!-- CARD UTAMA -->
+    <div class="card shadow-sm border-0" style="background-color: #ffffff; border-radius: 16px; padding: 24px;">
+        
+        <!-- HEADER DALAM CARD -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+            <div>
+                <h4 style="margin: 0; font-weight: 700; color: #344767; font-size: 1.25rem;">
+                    Kelola Berita & Informasi Sekolah
+                </h4>
+                <p style="margin: 4px 0 0 0; color: #8392ab; font-size: 0.875rem;">
+                    Kelola dan publikasikan berita terbaru untuk informasi sekolah Anda.
+                </p>
+            </div>
+            <a href="{{ route('admin.berita.addEdit') }}" 
+               style="background: linear-gradient(310deg, #7928ca, #370b6d); color: #ffffff; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.875rem; box-shadow: 0 4px 6px rgba(50,50,93,.11); display: inline-flex; align-items: center;">
+                + Tambah Berita Baru
+            </a>
         </div>
-        <a href="{{ route('admin.berita.addEdit') }}" 
-           style="background: linear-gradient(310deg, #7928ca, #370b6d); color: #ffffff; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.875rem; box-shadow: 0 4px 6px rgba(50,50,93,.11);">
-            + Tambah Berita
-        </a>
-    </div>
 
-    <!-- NOTIFIKASI SUKSES -->
-    @if(session('success'))
-        <div style="background-color: #d1e7dd; border: 1px solid #badbcc; color: #0f5132; padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; font-size: 0.875rem;">
-            {{ session('success') }}
-        </div>
-    @endif
+        <!-- NOTIFIKASI SUKSES -->
+        @if (session('success'))
+            <div style="background-color: #d1e7dd; border: 1px solid #badbcc; color: #0f5132; padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; font-size: 0.875rem;">
+                {{ session('success') }}
+            </div>
+        @endif
 
-    <!-- TABEL DATA BERITA -->
-    <div style="overflow-x: auto;">
-        <table style="width: 100%; border-collapse: collapse; font-size: 0.875rem; text-align: left;">
-            <thead>
-                <tr style="border-bottom: 2px solid #e9ecef; background-color: #f8f9fa; color: #8392ab;">
-                    <th style="padding: 12px 16px; width: 50px;">No</th>
-                    <th style="padding: 12px 16px; width: 90px;">Gambar</th>
-                    <th style="padding: 12px 16px;">Judul Berita</th>
-                    <th style="padding: 12px 16px; width: 140px;">Tanggal</th>
-                    <th style="padding: 12px 16px; width: 180px; text-align: center;">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($berita as $key => $item)
-                    <tr style="border-bottom: 1px solid #e9ecef;">
-                        <td style="padding: 14px 16px; color: #344767; font-weight: bold;">{{ $key + 1 }}</td>
-                        <td style="padding: 14px 16px;">
-                            @if($item->gambar && file_exists(public_path('storage/' . $item->gambar)))
-                                <img src="{{ asset('storage/' . $item->gambar) }}" alt="Gambar Berita" style="width: 60px; height: 45px; object-fit: cover; border-radius: 6px;">
-                            @else
-                                <div style="width: 60px; height: 45px; background-color: #e9ecef; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #8392ab; font-size: 0.75rem;">
-                                    No Image
-                                </div>
-                            @endif
-                        </td>
-                        <td style="padding: 14px 16px; color: #344767; font-weight: 600;">
-                            {{ Str::limit($item->judul, 60) }}
-                        </td>
-                        <td style="padding: 14px 16px; color: #495057;">
-                            {{ $item->tanggal ? \Carbon\Carbon::parse($item->tanggal)->format('d M Y') : '-' }}
-                        </td>
-                        <td style="padding: 14px 16px; text-align: center;">
-                            <div style="display: flex; gap: 6px; justify-content: center;">
-                                <a href="{{ route('admin.berita.show', Crypt::encrypt($item->id_berita)) }}" 
-                                   style="background-color: #17a2b8; color: #fff; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 0.75rem; font-weight: bold;">
-                                    Detail
-                                </a>
-                                <a href="{{ route('admin.berita.addEdit', Crypt::encrypt($item->id_berita)) }}" 
-                                   style="background-color: #ffc107; color: #000; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 0.75rem; font-weight: bold;">
-                                    Edit
-                                </a>
-                                <form action="{{ route('admin.berita.delete', Crypt::encrypt($item->id_berita)) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus berita ini?')" style="display: inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" style="background-color: #dc3545; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.75rem; font-weight: bold;">
+        <!-- FORM HAPUS GLOBAL (UNTUK MENGHINDARI BUG NESTED FORM IN TABLE) -->
+        <form id="globalDeleteForm" method="POST" style="display: none;">
+            @csrf
+            @method('DELETE')
+        </form>
+
+        <!-- TABEL -->
+        <div class="table-responsive">
+            <table id="tableBerita" class="table align-items-center mb-0" style="width: 100%;">
+                <thead>
+                    <tr style="background-color: #f8f9fa;">
+                        <th class="text-center" style="color: #8392ab; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 12px;">NO</th>
+                        <th style="color: #8392ab; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 12px;">COVER</th>
+                        <th style="color: #8392ab; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 12px;">JUDUL & RINGKASAN</th>
+                        <th style="color: #8392ab; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 12px;">TANGGAL</th>
+                        <th style="color: #8392ab; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 12px;">PENULIS</th>
+                        <th class="text-center" style="color: #8392ab; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 12px;">AKSI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($berita as $index => $item)
+                        @php
+                            $encryptedId = Crypt::encrypt($item->id_berita ?? $item->id);
+                        @endphp
+                        <tr>
+                            <!-- NOMOR -->
+                            <td class="text-center" style="vertical-align: middle; font-weight: 600; color: #344767; font-size: 0.875rem; padding: 12px;">
+                                {{ $index + 1 }}
+                            </td>
+
+                            <!-- COVER / GAMBAR -->
+                            <td style="vertical-align: middle; padding: 12px;">
+                                @if ($item->gambar && file_exists(public_path('storage/' . $item->gambar)))
+                                    <img src="{{ asset('storage/' . $item->gambar) }}" alt="Cover"
+                                        style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover; border: 1px solid #e9ecef;">
+                                @else
+                                    <img src="https://via.placeholder.com/44" alt="Default"
+                                        style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover; border: 1px solid #e9ecef;">
+                                @endif
+                            </td>
+
+                            <!-- JUDUL & RINGKASAN -->
+                            <td style="vertical-align: middle; padding: 12px;">
+                                <h6 style="margin: 0; font-weight: 700; color: #344767; font-size: 0.875rem; line-height: 1.3;">
+                                    {{ $item->judul }}
+                                </h6>
+                                <p style="margin: 2px 0 0 0; color: #8392ab; font-size: 0.78rem; line-height: 1.3;">
+                                    {{ Str::limit(strip_tags($item->isi ?? $item->ringkasan), 50, '...') }}
+                                </p>
+                            </td>
+
+                            <!-- TANGGAL -->
+                            <td style="vertical-align: middle; color: #8392ab; font-size: 0.825rem; padding: 12px; white-space: nowrap;">
+                                {{ \Carbon\Carbon::parse($item->created_at)->format('d M Y') }}
+                            </td>
+
+                            <!-- PENULIS -->
+                            <td style="vertical-align: middle; color: #8392ab; font-size: 0.825rem; padding: 12px;">
+                                {{ $item->penulis ?? ($item->user->name ?? 'Admin') }}
+                            </td>
+
+                            <!-- AKSI -->
+                            <td class="text-center" style="vertical-align: middle; padding: 12px; white-space: nowrap;">
+                                <div style="display: flex; gap: 6px; align-items: center; justify-content: center;">
+                                    
+                                    <!-- DETAIL -->
+                                    <a href="{{ route('admin.berita.show', $encryptedId) }}" 
+                                       class="btn btn-sm text-white font-weight-bold"
+                                       style="background-color: #17a2b8; border-radius: 6px; padding: 6px 12px; font-size: 0.75rem; margin: 0;">
+                                        Detail
+                                    </a>
+
+                                    <!-- EDIT -->
+                                    <a href="{{ route('admin.berita.addEdit', $encryptedId) }}" 
+                                       class="btn btn-sm text-white font-weight-bold"
+                                       style="background-color: #ffc107; border-radius: 6px; padding: 6px 12px; font-size: 0.75rem; margin: 0;">
+                                        Edit
+                                    </a>
+
+                                    <!-- HAPUS (MEMANGGIL JS) -->
+                                    <button type="button" 
+                                            onclick="konfirmasiHapus('{{ route('admin.berita.delete', $encryptedId) }}')" 
+                                            class="btn btn-sm text-white font-weight-bold"
+                                            style="background-color: #dc3545; border-radius: 6px; padding: 6px 12px; font-size: 0.75rem; margin: 0; border: none;">
                                         Hapus
                                     </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="5" style="text-align: center; padding: 24px; color: #8392ab;">Belum ada data berita.</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 
-</div>
+    <!-- SCRIPT KHUSUS UNTUK MEMASTIKAN DIKLIK -->
+    <script>
+        function konfirmasiHapus(url) {
+            if (confirm('Apakah Anda yakin ingin menghapus berita ini?')) {
+                var form = document.getElementById('globalDeleteForm');
+                form.action = url;
+                form.submit();
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof $ !== 'undefined' && $.fn.DataTable) {
+                $('#tableBerita').DataTable({
+                    "language": {
+                        "lengthMenu": "_MENU_ entries per page",
+                        "zeroRecords": "Tidak ada data berita ditemukan",
+                        "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+                        "infoEmpty": "Showing 0 to 0 of 0 entries",
+                        "infoFiltered": "(filtered from _MAX_ total records)",
+                        "search": "Search:",
+                        "paginate": {
+                            "previous": "<",
+                            "next": ">"
+                        }
+                    },
+                    "pageLength": 10,
+                    "ordering": true,
+                    "autoWidth": false
+                });
+            }
+        });
+    </script>
 @endsection
