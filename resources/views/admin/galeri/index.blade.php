@@ -72,7 +72,7 @@
                 @forelse ($galeri as $item)
                     @php
                         $idRaw = $item->id_galeri;
-                        $encryptedId = Crypt::encrypt($idRaw);
+                        $encryptedId = urlencode(Crypt::encrypt($idRaw));
                     @endphp
                     <tr>
                         <td class="text-center" style="vertical-align: middle; font-weight: 600; color: #344767; font-size: 0.875rem; padding: 12px;">
@@ -83,7 +83,7 @@
                             @if ($item->file && file_exists(public_path('storage/' . $item->file)))
                                 @if ($item->kategori == 'Foto')
                                     <img src="{{ asset('storage/' . $item->file) }}" alt="{{ $item->judul }}"
-                                        style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover; border: 1px solid #e9ecef; display: inline-block;">
+                                         style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover; border: 1px solid #e9ecef; display: inline-block;">
                                 @else
                                     <div style="width: 50px; height: 50px; border-radius: 8px; background: #212529; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; margin: 0 auto;">
                                         Video
@@ -132,7 +132,7 @@
                                     Edit
                                 </a>
 
-                                <!-- HAPUS (Menggunakan route admin.galeri.delete) -->
+                                <!-- HAPUS -->
                                 <button type="button" 
                                         onclick="konfirmasiHapus('{{ route('admin.galeri.delete', ['id' => $encryptedId]) }}')" 
                                         class="btn btn-sm text-white font-weight-bold"

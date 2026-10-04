@@ -1,9 +1,8 @@
 @extends('admin_app')
 
-@section('title', 'Kelola Berita')
+@section('title', 'Kelola Data Guru')
 
 @section('content')
-<!-- CSS KHUSUS MEMAKSA TOMBOL AKSI BISA DIKLIK -->
 <style>
     .action-btn-group {
         position: relative !important;
@@ -25,19 +24,19 @@
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
         <div>
             <h4 style="margin: 0; font-weight: 700; color: #344767; font-size: 1.25rem;">
-                Kelola Berita & Informasi Sekolah
+                Kelola Data Guru
             </h4>
             <p style="margin: 4px 0 0 0; color: #8392ab; font-size: 0.875rem;">
-                Kelola dan publikasikan berita terbaru untuk informasi sekolah Anda.
+                Kelola informasi pengajar dan staf pengajar sekolah.
             </p>
         </div>
-        <a href="{{ route('admin.berita.addEdit') }}" 
+        <a href="{{ route('admin.guru.addEdit') }}" 
            style="background: linear-gradient(310deg, #7928ca, #370b6d); color: #ffffff; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.875rem; box-shadow: 0 4px 6px rgba(50,50,93,.11); display: inline-flex; align-items: center;">
-            + Tambah Berita Baru
+            + Tambah Guru
         </a>
     </div>
 
-    <!-- NOTIFIKASI SUKSES / ERROR -->
+    <!-- NOTIFIKASI -->
     @if (session('success'))
         <div style="background-color: #d1e7dd; border: 1px solid #badbcc; color: #0f5132; padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; font-size: 0.875rem;">
             {{ session('success') }}
@@ -56,24 +55,24 @@
         @method('DELETE')
     </form>
 
-    <!-- TABEL DATA BERITA -->
+    <!-- TABEL DATA GURU -->
     <div class="table-responsive">
-        <table id="tableBerita" class="table align-items-center mb-0" style="width: 100%;">
+        <table id="tableGuru" class="table align-items-center mb-0" style="width: 100%;">
             <thead>
                 <tr style="background-color: #f8f9fa;">
-                    <th class="text-center" style="color: #8392ab; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 12px;">NO</th>
-                    <th style="color: #8392ab; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 12px;">COVER</th>
-                    <th style="color: #8392ab; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 12px;">JUDUL & RINGKASAN</th>
-                    <th style="color: #8392ab; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 12px;">TANGGAL</th>
-                    <th style="color: #8392ab; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 12px;">PENULIS</th>
-                    <th class="text-center" style="color: #8392ab; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 12px;">AKSI</th>
+                    <th class="text-center" style="color: #8392ab; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 12px; width: 50px;">NO</th>
+                    <th class="text-center" style="color: #8392ab; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 12px; width: 80px;">FOTO</th>
+                    <th style="color: #8392ab; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 12px;">NIP</th>
+                    <th style="color: #8392ab; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 12px;">NAMA GURU</th>
+                    <th style="color: #8392ab; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 12px;">MATA PELAJARAN</th>
+                    <th class="text-center" style="color: #8392ab; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 12px; width: 180px;">AKSI</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse ($berita as $index => $item)
+                @forelse ($guru as $item)
                     @php
-                        $idRaw = $item->id_berita ?? $item->id;
-                        $encryptedId = Crypt::encrypt($idRaw);
+                        $idRaw = $item->id_guru;
+                        $encryptedId = urlencode(Crypt::encrypt($idRaw));
                     @endphp
                     <tr>
                         <!-- NO -->
@@ -81,35 +80,35 @@
                             {{ $loop->iteration }}
                         </td>
 
-                        <!-- COVER -->
-                        <td style="vertical-align: middle; padding: 12px;">
-                            @if ($item->gambar && file_exists(public_path('storage/' . $item->gambar)))
-                                <img src="{{ asset('storage/' . $item->gambar) }}" alt="Cover"
-                                    style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover; border: 1px solid #e9ecef;">
+                        <!-- FOTO -->
+                        <td class="text-center" style="vertical-align: middle; padding: 12px;">
+                            @if ($item->foto && file_exists(public_path('storage/' . $item->foto)))
+                                <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->nama_guru }}"
+                                     style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 1px solid #e9ecef; display: inline-block;">
                             @else
-                                <img src="https://via.placeholder.com/44" alt="Default"
-                                    style="width: 44px; height: 44px; border-radius: 8px; object-fit: cover; border: 1px solid #e9ecef;">
+                                <div style="width: 48px; height: 48px; border-radius: 50%; background: #e9ecef; color: #8392ab; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; margin: 0 auto;">
+                                    No Image
+                                </div>
                             @endif
                         </td>
 
-                        <!-- JUDUL & RINGKASAN -->
+                        <!-- NIP -->
+                        <td style="vertical-align: middle; color: #8392ab; font-size: 0.875rem; padding: 12px;">
+                            {{ $item->nip ?? '-' }}
+                        </td>
+
+                        <!-- NAMA GURU -->
                         <td style="vertical-align: middle; padding: 12px;">
-                            <h6 style="margin: 0; font-weight: 700; color: #344767; font-size: 0.875rem; line-height: 1.3;">
-                                {{ $item->judul }}
+                            <h6 style="margin: 0; font-weight: 700; color: #344767; font-size: 0.875rem;">
+                                {{ $item->nama_guru }}
                             </h6>
-                            <p style="margin: 2px 0 0 0; color: #8392ab; font-size: 0.78rem; line-height: 1.3;">
-                                {{ Str::limit(strip_tags($item->isi ?? $item->ringkasan), 50, '...') }}
-                            </p>
                         </td>
 
-                        <!-- TANGGAL -->
-                        <td style="vertical-align: middle; color: #8392ab; font-size: 0.825rem; padding: 12px; white-space: nowrap;">
-                            {{ \Carbon\Carbon::parse($item->created_at)->format('d M Y') }}
-                        </td>
-
-                        <!-- PENULIS -->
-                        <td style="vertical-align: middle; color: #8392ab; font-size: 0.825rem; padding: 12px;">
-                            {{ $item->penulis ?? ($item->user->name ?? 'Admin') }}
+                        <!-- MAPEL -->
+                        <td style="vertical-align: middle; color: #344767; font-size: 0.875rem; padding: 12px;">
+                            <span style="background-color: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 6px; font-weight: 600; font-size: 0.75rem;">
+                                {{ $item->mapel ?? '-' }}
+                            </span>
                         </td>
 
                         <!-- AKSI -->
@@ -117,14 +116,14 @@
                             <div class="action-btn-group" style="display: flex; gap: 6px; align-items: center; justify-content: center;">
                                 
                                 <!-- DETAIL -->
-                                <a href="{{ route('admin.berita.show', ['id' => $encryptedId]) }}" 
+                                <a href="{{ route('admin.guru.show', ['id' => $encryptedId]) }}" 
                                    class="btn btn-sm text-white font-weight-bold"
                                    style="background-color: #17a2b8; border-radius: 6px; padding: 6px 12px; font-size: 0.75rem; margin: 0; text-decoration: none; display: inline-block;">
                                     Detail
                                 </a>
 
                                 <!-- EDIT -->
-                                <a href="{{ route('admin.berita.addEdit', ['id' => $encryptedId]) }}" 
+                                <a href="{{ route('admin.guru.addEdit', ['id' => $encryptedId]) }}" 
                                    class="btn btn-sm text-white font-weight-bold"
                                    style="background-color: #ffc107; border-radius: 6px; padding: 6px 12px; font-size: 0.75rem; margin: 0; text-decoration: none; display: inline-block;">
                                     Edit
@@ -132,7 +131,7 @@
 
                                 <!-- HAPUS -->
                                 <button type="button" 
-                                        onclick="konfirmasiHapus('{{ route('admin.berita.delete', ['id' => $encryptedId]) }}')" 
+                                        onclick="konfirmasiHapus('{{ route('admin.guru.destroy', ['id' => $encryptedId]) }}')" 
                                         class="btn btn-sm text-white font-weight-bold"
                                         style="background-color: #dc3545; border-radius: 6px; padding: 6px 12px; font-size: 0.75rem; margin: 0; border: none; cursor: pointer;">
                                     Hapus
@@ -144,7 +143,7 @@
                 @empty
                     <tr>
                         <td colspan="6" class="text-center" style="padding: 32px; color: #8392ab;">
-                            Belum ada berita yang diterbitkan.
+                            Belum ada data guru yang tersimpan.
                         </td>
                     </tr>
                 @endforelse
@@ -153,36 +152,13 @@
     </div>
 </div>
 
-<!-- SCRIPT DATATABLES & KONFIRMASI HAPUS -->
 <script>
     function konfirmasiHapus(url) {
-        if (confirm('Apakah Anda yakin ingin menghapus berita ini?')) {
+        if (confirm('Apakah Anda yakin ingin menghapus data guru ini?')) {
             var form = document.getElementById('globalDeleteForm');
             form.action = url;
             form.submit();
         }
     }
-
-    document.addEventListener("DOMContentLoaded", function () {
-        if (typeof $ !== 'undefined' && $.fn.DataTable) {
-            $('#tableBerita').DataTable({
-                "language": {
-                    "lengthMenu": "_MENU_ entries per page",
-                    "zeroRecords": "Tidak ada data berita ditemukan",
-                    "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-                    "infoEmpty": "Showing 0 to 0 of 0 entries",
-                    "infoFiltered": "(filtered from _MAX_ total records)",
-                    "search": "Search:",
-                    "paginate": {
-                        "previous": "<",
-                        "next": ">"
-                    }
-                },
-                "pageLength": 10,
-                "ordering": true,
-                "autoWidth": false
-            });
-        }
-    });
 </script>
 @endsection

@@ -8,6 +8,7 @@ use App\Http\Controllers\GuruController;
 use App\Http\Controllers\ProfileSekolahController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\EkstrakurikulerController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,6 +21,8 @@ Route::get('/', [AuthController::class, 'index'])
 
 Route::post('Login-proses', [AuthController::class, 'processLogin'])
     ->name('admin.login.proses');
+
+Route::post('logout', [AuthController::class, 'logout'])->name('admin.logout');
 
 
 // ================================================================
@@ -40,14 +43,10 @@ Route::prefix('admin')->group(function () {
     // PROFILE SEKOLAH
     // ============================================================
 
-    Route::get('/Profile', [ProfileSekolahController::class, 'index'])
-        ->name('admin.profile');
+    Route::get('/profil-sekolah', [ProfileSekolahController::class, 'index'])->name('admin.profil-sekolah');
+    Route::post('/profil-sekolah/save', [ProfileSekolahController::class, 'save'])->name('admin.profil-sekolah.save');
+    Route::get('/profil', [ProfileSekolahController::class, 'index'])->name('admin.profil');
 
-    Route::put('/Profile', [ProfileSekolahController::class, 'update'])
-        ->name('admin.profile.update');
-
-    Route::post('/Profile/photo', [ProfileSekolahController::class, 'updatePhoto'])
-        ->name('admin.profile.photo');
 
 
     // ============================================================
@@ -69,7 +68,7 @@ Route::prefix('admin')->group(function () {
             ->name('admin.ekstrakurikuler.show');
 
         Route::delete('/{id}', [EkstrakurikulerController::class, 'destroy'])
-            ->name('admin.ekstrakurikuler.delete');
+            ->name('admin.ekstrakurikuler.destroy');
     });
 
 
@@ -113,7 +112,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/{id}', [GuruController::class, 'show'])->name('admin.guru.show');
 
         Route::delete('/{id}', [GuruController::class, 'destroy'])
-           ->name('admin.guru.destroy');
+            ->name('admin.guru.destroy');
     });
 
 
@@ -145,10 +144,18 @@ Route::prefix('admin')->group(function () {
     // ============================================================
 
     Route::middleware(['auth'])->prefix('admin/berita')->group(function () {
-    Route::get('/', [BeritaController::class, 'index'])->name('admin.berita.index');
-    Route::get('/add-edit/{id?}', [BeritaController::class, 'addEdit'])->name('admin.berita.addEdit');
-    Route::post('/save/{id?}', [BeritaController::class, 'save'])->name('admin.berita.save');
-    Route::get('/show/{id}', [BeritaController::class, 'show'])->name('admin.berita.show');
-    Route::delete('/delete/{id}', [BeritaController::class, 'destroy'])->name('admin.berita.delete');
-});
+        Route::get('/', [BeritaController::class, 'index'])->name('admin.berita.index');
+        Route::get('/add-edit/{id?}', [BeritaController::class, 'addEdit'])->name('admin.berita.addEdit');
+        Route::post('/save/{id?}', [BeritaController::class, 'save'])->name('admin.berita.save');
+        Route::get('/show/{id}', [BeritaController::class, 'show'])->name('admin.berita.show');
+        Route::delete('/delete/{id}', [BeritaController::class, 'destroy'])->name('admin.berita.delete');
+    });
+
+    Route::prefix('user')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
+        Route::get('/add-edit/{id?}', [UserController::class, 'addEdit'])->name('admin.user.addEdit');
+        Route::post('/save/{id?}', [UserController::class, 'save'])->name('admin.user.save');
+        Route::get('/{id}', [UserController::class, 'show'])->name('admin.user.show');
+        Route::delete('/{id}', [UserController::class, 'destroy'])->name('admin.user.delete');
+    });
 });

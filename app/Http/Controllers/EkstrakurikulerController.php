@@ -41,7 +41,7 @@ class EkstrakurikulerController extends Controller
         // Ambil daftar guru untuk dropdown pembina
         $guruList = Guru::all();
 
-        return view('admin.ekstrakurikuler.add_edit', compact('ekstrakurikuler', 'guruList'));
+        return view('admin.ekstrakurikuler.form', compact('ekstrakurikuler', 'guruList'));
     }
 
     // 3. Simpan / Update Data

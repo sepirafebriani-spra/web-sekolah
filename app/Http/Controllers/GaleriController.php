@@ -89,14 +89,14 @@ class GaleriController extends Controller
     public function show($id)
     {
         try {
-            $galeri = Galeri::findOrFail(Crypt::decrypt($id));
-        } catch (\Exception $e) {
-            return redirect()
-                ->route('admin.galeri.index')
-                ->with('error', 'Data galeri tidak ditemukan.');
-        }
+            // Dekripsi ID (ganti spasi dengan + jika terdistorsi oleh browser)
+            $decryptedId = Crypt::decrypt(str_replace(' ', '+', $id));
+            $galeri = Galeri::where('id_galeri', $decryptedId)->firstOrFail();
 
-        return view('admin.galeri.show', compact('galeri'));
+            return view('admin.galeri.show', compact('galeri'));
+        } catch (\Exception $e) {
+            return redirect()->route('admin.galeri.index')->with('error', 'Data galeri tidak ditemukan!');
+        }
     }
 
     public function destroy($id)

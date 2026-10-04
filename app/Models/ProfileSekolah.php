@@ -14,11 +14,13 @@ class ProfileSekolah extends Model
 
     protected $fillable = [
         'nama_sekolah',
+        'npsn',
+        'kepala_sekolah',
+        'tahun_berdiri',
+        'kontak',
         'alamat',
-        'telepon',
-        'email',
-        'visi',
-        'misi',
+        'deskripsi',
+        'visi_misi',
         'logo',
     ];
 }
