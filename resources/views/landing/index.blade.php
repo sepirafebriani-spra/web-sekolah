@@ -47,31 +47,16 @@
                 </div>
 
                 <!-- Navigation Menu (Desktop) -->
-                <nav class="hidden md:flex items-center space-x-6 text-xs font-semibold text-gray-700">
-                    <a href="{{ url('/') }}" class="hover:text-sky-600 transition">Beranda</a>
-                    <a href="{{ url('/profil') }}" class="hover:text-sky-600 transition">Profil</a>
-                    <a href="{{ route('public.guru') }}" class="hover:text-sky-600 transition">Guru</a>
-                    <a href="{{ route('public.siswa') }}" class="hover:text-sky-600 transition">Siswa</a>
-                    <a href="{{ route('berita') }}" class="hover:text-sky-600 transition">Berita</a>
-                    <a href="{{ route('ekstrakurikuler') }}" class="hover:text-sky-600 transition">Ekstrakurikuler</a>
-                    <a href="{{ route('galeri') }}" class="hover:text-sky-600 transition">Galeri</a>
-                    <a href="{{ route('public.data-profile') }}" class="hover:text-sky-600 transition">Data Profile</a>
+                <nav class="hidden md:flex items-center space-x-6 text-xs font-semibold">
+                    <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'text-sky-600 font-bold' : 'text-gray-700 hover:text-sky-600' }} transition">Beranda</a>
+                    <a href="{{ url('/profil') }}" class="{{ request()->is('profil') ? 'text-sky-600 font-bold' : 'text-gray-700 hover:text-sky-600' }} transition">Profil</a>
+                    <a href="{{ route('public.guru') }}" class="{{ request()->routeIs('public.guru') ? 'text-sky-600 font-bold' : 'text-gray-700 hover:text-sky-600' }} transition">Guru</a>
+                    <a href="{{ route('public.siswa') }}" class="{{ request()->routeIs('public.siswa') ? 'text-sky-600 font-bold' : 'text-gray-700 hover:text-sky-600' }} transition">Siswa</a>
+                    <a href="{{ route('berita') }}" class="{{ request()->routeIs('berita') ? 'text-sky-600 font-bold' : 'text-gray-700 hover:text-sky-600' }} transition">Berita</a>
+                    <a href="{{ route('ekstrakurikuler') }}" class="{{ request()->routeIs('ekstrakurikuler') ? 'text-sky-600 font-bold' : 'text-gray-700 hover:text-sky-600' }} transition">Ekstrakurikuler</a>
+                    <a href="{{ route('galeri') }}" class="{{ request()->routeIs('galeri') ? 'text-sky-600 font-bold' : 'text-gray-700 hover:text-sky-600' }} transition">Galeri</a>
+                    <a href="{{ route('public.data-profile') }}" class="{{ request()->routeIs('public.data-profile') ? 'text-sky-600 font-bold' : 'text-gray-700 hover:text-sky-600' }} transition">Data Profile</a>
                 </nav>
-
-                {{-- <!-- Tombol Admin / Login -->
-                <div>
-                    @auth
-                        <a href="{{ route('admin.dashboard') }}"
-                            class="bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold px-4 py-2 rounded shadow-sm transition">
-                            <i class="fas fa-gauge mr-1"></i> Dashboard Admin
-                        </a>
-                    @else
-                        <a href="{{ route('login') }}"
-                            class="bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold px-4 py-2 rounded shadow-sm transition">
-                            <i class="fas fa-sign-in-alt mr-1"></i> Masuk Admin
-                        </a>
-                    @endauth
-                </div> --}}
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden">
@@ -85,28 +70,27 @@
         <!-- Mobile Menu -->
         <div x-show="open" x-cloak class="md:hidden bg-white border-t px-4 py-3 space-y-2 text-sm font-medium">
             <a href="{{ url('/') }}" @click="open = false"
-                class="block py-1 text-gray-700 hover:text-sky-600">Beranda</a>
+                class="block py-1 {{ request()->is('/') ? 'text-sky-600 font-bold' : 'text-gray-700' }} hover:text-sky-600">Beranda</a>
             <a href="{{ url('/#sambutan') }}" @click="open = false"
                 class="block py-1 text-gray-700 hover:text-sky-600">Sambutan</a>
             <a href="{{ url('/profil') }}" @click="open = false"
-                class="block py-1 text-gray-700 hover:text-sky-600">Profil</a>
+                class="block py-1 {{ request()->is('profil') ? 'text-sky-600 font-bold' : 'text-gray-700' }} hover:text-sky-600">Profil</a>
             <a href="{{ route('public.guru') }}" @click="open = false"
-                class="block py-1 text-gray-700 hover:text-sky-600">Guru</a>
+                class="block py-1 {{ request()->routeIs('public.guru') ? 'text-sky-600 font-bold' : 'text-gray-700' }} hover:text-sky-600">Guru</a>
             <a href="{{ route('public.siswa') }}" @click="open = false"
-                class="block py-1 text-gray-700 hover:text-sky-600">Siswa</a>
+                class="block py-1 {{ request()->routeIs('public.siswa') ? 'text-sky-600 font-bold' : 'text-gray-700' }} hover:text-sky-600">Siswa</a>
             <a href="{{ route('berita') }}" @click="open = false"
-                class="block py-1 text-gray-700 hover:text-sky-600">Berita</a>
+                class="block py-1 {{ request()->routeIs('berita') ? 'text-sky-600 font-bold' : 'text-gray-700' }} hover:text-sky-600">Berita</a>
             <a href="{{ route('ekstrakurikuler') }}" @click="open = false"
-                class="block py-1 text-gray-700 hover:text-sky-600">Ekstrakurikuler</a>
+                class="block py-1 {{ request()->routeIs('ekstrakurikuler') ? 'text-sky-600 font-bold' : 'text-gray-700' }} hover:text-sky-600">Ekstrakurikuler</a>
             <a href="{{ route('galeri') }}" @click="open = false"
-                class="block py-1 text-gray-700 hover:text-sky-600">Galeri</a>
+                class="block py-1 {{ request()->routeIs('galeri') ? 'text-sky-600 font-bold' : 'text-gray-700' }} hover:text-sky-600">Galeri</a>
             <a href="{{ route('public.data-profile') }}" @click="open = false"
-                class="block py-1 text-gray-700 hover:text-sky-600">Data Profile</a>
+                class="block py-1 {{ request()->routeIs('public.data-profile') ? 'text-sky-600 font-bold' : 'text-gray-700' }} hover:text-sky-600">Data Profile</a>
             <div class="pt-2 border-t">
                 @auth
                     <a href="{{ route('admin.dashboard') }}"
-                        class="block text-center bg-sky-600 text-white text-xs py-2 rounded font-semibold">Dashboard
-                        Admin</a>
+                        class="block text-center bg-sky-600 text-white text-xs py-2 rounded font-semibold">Dashboard Admin</a>
                 @else
                     <a href="{{ route('login') }}"
                         class="block text-center bg-sky-600 text-white text-xs py-2 rounded font-semibold">Masuk Admin</a>

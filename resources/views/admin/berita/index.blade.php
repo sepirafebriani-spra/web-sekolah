@@ -16,13 +16,13 @@
             </p>
         </div>
 
-        @if(auth()->check() && strtolower(auth()->user()->role) === 'admin')
-        <a href="{{ route('admin.berita.addEdit') }}"
-           class="px-4 py-2 bg-[#0284c7] hover:bg-[#0369a1] text-white rounded-lg text-sm font-semibold shadow-md transition-all"
-           style="text-decoration: none; position: relative; z-index: 10;">
-            + Tambah Berita Baru
-        </a>
-        @endif
+        <div>
+            <a href="{{ route('admin.berita.addEdit') }}"
+               class="px-4 py-2 bg-[#0284c7] hover:bg-[#0369a1] text-white rounded-lg text-sm font-semibold shadow-md transition-all"
+               style="text-decoration: none; position: relative; z-index: 10; display: inline-block;">
+                + Tambah Berita Baru
+            </a>
+        </div>
     </div>
 
     <!-- NOTIFIKASI SUKSES / ERROR (AUTO-HIDE 3 DETIK) -->
@@ -104,36 +104,32 @@
 
                         <!-- AKSI -->
                         <td style="padding: 16px; text-align: center; vertical-align: middle; position: relative; z-index: 10;">
-                            @if(auth()->check() && strtolower(auth()->user()->role) === 'admin')
-                                <div style="display: inline-flex; justify-content: center; align-items: center; gap: 6px;">
-                                    <!-- DETAIL -->
-                                    <a href="{{ route('admin.berita.show', Crypt::encrypt($beritaId)) }}"
-                                       style="background-color: #17a2b8; color: #ffffff; padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 12px; text-decoration: none; display: inline-block;">
-                                        Detail
-                                    </a>
+                            <div style="display: inline-flex; justify-content: center; align-items: center; gap: 6px;">
+                                <!-- DETAIL -->
+                                <a href="{{ route('admin.berita.show', Crypt::encrypt($beritaId)) }}"
+                                   style="background-color: #17a2b8; color: #ffffff; padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 12px; text-decoration: none; display: inline-block;">
+                                    Detail
+                                </a>
 
-                                    <!-- EDIT -->
-                                    <a href="{{ route('admin.berita.addEdit', Crypt::encrypt($beritaId)) }}"
-                                       style="background-color: #ffc107; color: #000000; padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 12px; text-decoration: none; display: inline-block;">
-                                        Edit
-                                    </a>
+                                <!-- EDIT -->
+                                <a href="{{ route('admin.berita.addEdit', Crypt::encrypt($beritaId)) }}"
+                                   style="background-color: #ffc107; color: #000000; padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 12px; text-decoration: none; display: inline-block;">
+                                    Edit
+                                </a>
 
-                                    <!-- HAPUS -->
-                                    <form action="{{ route('admin.berita.delete', Crypt::encrypt($beritaId)) }}"
-                                          method="POST"
-                                          style="margin: 0; display: inline-block;"
-                                          onsubmit="return confirm('Apakah Anda yakin ingin menghapus berita ini?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                                style="background-color: #dc3545; color: #ffffff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer;">
-                                            Hapus
-                                        </button>
-                                    </form>
-                                </div>
-                            @else
-                                <span style="color: #6c757d; font-weight: 600;">-</span>
-                            @endif
+                                <!-- HAPUS -->
+                                <form action="{{ route('admin.berita.delete', Crypt::encrypt($beritaId)) }}"
+                                      method="POST"
+                                      style="margin: 0; display: inline-block;"
+                                      onsubmit="return confirm('Apakah Anda yakin ingin menghapus berita ini?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                            style="background-color: #dc3545; color: #ffffff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer;">
+                                        Hapus
+                                    </button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @empty

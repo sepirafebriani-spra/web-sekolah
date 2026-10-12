@@ -7,21 +7,19 @@
         <!-- Container Utama Putih Bersih Card -->
         <div style="background-color: #ffffff; border-radius: 16px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);">
 
-            {{-- HEADER: Judul di Kiri & Tombol Tambah di Kanan Atas (Hanya untuk Admin) --}}
+            {{-- HEADER: Judul di Kiri & Tombol Tambah di Kanan Atas --}}
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #e9ecef;">
                 <div>
                     <h4 style="font-weight: 700; color: #212529; margin: 0 0 4px 0; font-size: 18px;">Data Guru</h4>
                     <p style="color: #6c757d; font-size: 13px; margin: 0;">Daftar data guru sekolah.</p>
                 </div>
 
-                @if (auth()->check() && strtolower(auth()->user()->role) === 'admin')
-                    <div>
-                        <a href="{{ route('admin.guru.addEdit') }}"
-                           style="display: inline-block; background-color: #0d6efd; color: #ffffff; padding: 8px 18px; border-radius: 8px; font-weight: 600; font-size: 13px; text-decoration: none; box-shadow: 0 2px 4px rgba(13,110,253,0.2);">
-                            + Tambah Guru
-                        </a>
-                    </div>
-                @endif
+                <div>
+                    <a href="{{ route('admin.guru.addEdit') }}"
+                       style="display: inline-block; background-color: #0d6efd; color: #ffffff; padding: 8px 18px; border-radius: 8px; font-weight: 600; font-size: 13px; text-decoration: none; box-shadow: 0 2px 4px rgba(13,110,253,0.2);">
+                        + Tambah Guru
+                    </a>
+                </div>
             </div>
 
             {{-- NOTIFIKASI SUKSES (AUTO-HIDE 3 DETIK) --}}
@@ -96,38 +94,34 @@
 
                                 {{-- AKSI --}}
                                 <td class="text-center">
-                                    @if (auth()->check() && strtolower(auth()->user()->role) === 'admin')
-                                        <div style="display: flex; align-items: center; justify-content: center; gap: 6px;">
-                                            {{-- DETAIL --}}
-                                            <a href="{{ route('admin.guru.show', Crypt::encrypt($guruId)) }}"
-                                               style="display: inline-block; background-color: #17a2b8; color: #ffffff; padding: 5px 12px; border-radius: 6px; font-weight: 600; font-size: 12px; text-decoration: none;"
-                                               title="Detail">
-                                                Detail
-                                            </a>
+                                    <div style="display: flex; align-items: center; justify-content: center; gap: 6px;">
+                                        {{-- DETAIL --}}
+                                        <a href="{{ route('admin.guru.show', Crypt::encrypt($guruId)) }}"
+                                           style="display: inline-block; background-color: #17a2b8; color: #ffffff; padding: 5px 12px; border-radius: 6px; font-weight: 600; font-size: 12px; text-decoration: none;"
+                                           title="Detail">
+                                            Detail
+                                        </a>
 
-                                            {{-- EDIT --}}
-                                            <a href="{{ route('admin.guru.addEdit', Crypt::encrypt($guruId)) }}"
-                                               style="display: inline-block; background-color: #ffc107; color: #000000; padding: 5px 12px; border-radius: 6px; font-weight: 600; font-size: 12px; text-decoration: none;"
-                                               title="Edit">
-                                                Edit
-                                            </a>
+                                        {{-- EDIT --}}
+                                        <a href="{{ route('admin.guru.addEdit', Crypt::encrypt($guruId)) }}"
+                                           style="display: inline-block; background-color: #ffc107; color: #000000; padding: 5px 12px; border-radius: 6px; font-weight: 600; font-size: 12px; text-decoration: none;"
+                                           title="Edit">
+                                            Edit
+                                        </a>
 
-                                            {{-- HAPUS --}}
-                                            <form action="{{ route('admin.guru.destroy', Crypt::encrypt($guruId)) }}" method="POST"
-                                                  style="display: inline-block; margin: 0; padding: 0;"
-                                                  onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                        style="background-color: #dc3545; color: #ffffff; padding: 5px 12px; border-radius: 6px; font-weight: 600; font-size: 12px; border: none; cursor: pointer;"
-                                                        title="Hapus">
-                                                    Hapus
-                                                </button>
-                                            </form>
-                                        </div>
-                                    @else
-                                        <span style="color: #6c757d; font-weight: 600;">-</span>
-                                    @endif
+                                        {{-- HAPUS --}}
+                                        <form action="{{ route('admin.guru.destroy', Crypt::encrypt($guruId)) }}" method="POST"
+                                              style="display: inline-block; margin: 0; padding: 0;"
+                                              onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                    style="background-color: #dc3545; color: #ffffff; padding: 5px 12px; border-radius: 6px; font-weight: 600; font-size: 12px; border: none; cursor: pointer;"
+                                                    title="Hapus">
+                                                Hapus
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @empty

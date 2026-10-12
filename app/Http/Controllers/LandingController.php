@@ -157,7 +157,7 @@ class LandingController extends Controller
             'nisn' => '0085512455',
             'kelas' => 'XI RPL II',
             'deskripsi' => 'Halo! Saya Febriani Sepira, pengembang perangkat lunak yang merancang dan membangun sistem website resmi sekolah ini. Menggunakan teknologi modern seperti Laravel dan Tailwind CSS, saya berdedikasi untuk menciptakan platform digital yang cepat, responsif, aman, dan mudah digunakan bagi seluruh warga sekolah.',
-            'foto' => 'febriani.png.jpeg', // Opsional
+            'foto' => 'febriani.jpeg', // Opsional
         ];
 
         return view('public.data-profile', compact('profil', 'student'));

@@ -48,14 +48,14 @@
 
                 <!-- Navigation Menu (Desktop) -->
                 <nav class="hidden md:flex items-center space-x-6 text-xs font-semibold text-gray-700">
-                    <a href="{{ route('beranda') }}" class="hover:text-sky-600 transition">Beranda</a>
-                    <a href="{{ url('/profil') }}" class="hover:text-sky-600 transition">Profil</a>
-                    <a href="{{ route('public.guru') }}" class="text-sky-600 font-bold transition">Guru</a>
-                    <a href="{{ route('public.siswa') }}" class="text-sky-600 font-bold transition">Siswa</a>
-                    <a href="{{ route('berita') }}" class="hover:text-sky-600 transition">Berita</a>
-                    <a href="{{ route('ekstrakurikuler') }}" class="hover:text-sky-600 transition">Ekstrakurikuler</a>
-                    <a href="{{ route('galeri') }}" class="hover:text-sky-600 transition">Galeri</a>
-                    <a href="{{ route('public.data-profile') }}" class="hover:text-sky-600 transition">Data Profile</a>
+                    <a href="{{ route('beranda') }}" class="{{ request()->routeIs('beranda') ? 'text-sky-600 font-bold' : 'hover:text-sky-600' }} transition">Beranda</a>
+                    <a href="{{ url('/profil') }}" class="{{ request()->is('profil*') ? 'text-sky-600 font-bold' : 'hover:text-sky-600' }} transition">Profil</a>
+                    <a href="{{ route('public.guru') }}" class="{{ request()->routeIs('public.guru*') ? 'text-sky-600 font-bold' : 'hover:text-sky-600' }} transition">Guru</a>
+                    <a href="{{ route('public.siswa') }}" class="{{ request()->routeIs('public.siswa*') ? 'text-sky-600 font-bold' : 'hover:text-sky-600' }} transition">Siswa</a>
+                    <a href="{{ route('berita') }}" class="{{ request()->routeIs('berita*') ? 'text-sky-600 font-bold' : 'hover:text-sky-600' }} transition">Berita</a>
+                    <a href="{{ route('ekstrakurikuler') }}" class="{{ request()->routeIs('ekstrakurikuler*') ? 'text-sky-600 font-bold' : 'hover:text-sky-600' }} transition">Ekstrakurikuler</a>
+                    <a href="{{ route('galeri') }}" class="{{ request()->routeIs('galeri*') ? 'text-sky-600 font-bold' : 'hover:text-sky-600' }} transition">Galeri</a>
+                    <a href="{{ route('public.data-profile') }}" class="{{ request()->routeIs('public.data-profile*') ? 'text-sky-600 font-bold' : 'hover:text-sky-600' }} transition">Data Profile</a>
                 </nav>
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden">
@@ -69,19 +69,19 @@
         <!-- Mobile Menu -->
         <div x-show="open" x-cloak class="md:hidden bg-white border-t px-4 py-3 space-y-2 text-sm font-medium">
             <a href="{{ route('beranda') }}" @click="open = false"
-                class="block py-1 text-gray-700 hover:text-sky-600">Beranda</a>
+                class="block py-1 {{ request()->routeIs('beranda') ? 'text-sky-600 font-bold' : 'text-gray-700' }} hover:text-sky-600">Beranda</a>
             <a href="{{ url('/profil') }}" @click="open = false"
-                class="block py-1 text-gray-700 hover:text-sky-600">Profil</a>
+                class="block py-1 {{ request()->is('profil*') ? 'text-sky-600 font-bold' : 'text-gray-700' }} hover:text-sky-600">Profil</a>
             <a href="{{ route('public.guru') }}" @click="open = false"
-                class="block py-1 text-sky-600 font-bold">Guru</a>
+                class="block py-1 {{ request()->routeIs('public.guru*') ? 'text-sky-600 font-bold' : 'text-gray-700' }} hover:text-sky-600">Guru</a>
             <a href="{{ route('public.siswa') }}" @click="open = false"
-                class="block py-1 text-sky-600 font-bold">Siswa</a>
+                class="block py-1 {{ request()->routeIs('public.siswa*') ? 'text-sky-600 font-bold' : 'text-gray-700' }} hover:text-sky-600">Siswa</a>
             <a href="{{ route('berita') }}" @click="open = false"
-                class="block py-1 text-gray-700 hover:text-sky-600">Berita</a>
+                class="block py-1 {{ request()->routeIs('berita*') ? 'text-sky-600 font-bold' : 'text-gray-700' }} hover:text-sky-600">Berita</a>
             <a href="{{ route('ekstrakurikuler') }}" @click="open = false"
-                class="block py-1 text-gray-700 hover:text-sky-600">Ekstrakurikuler</a>
+                class="block py-1 {{ request()->routeIs('ekstrakurikuler*') ? 'text-sky-600 font-bold' : 'text-gray-700' }} hover:text-sky-600">Ekstrakurikuler</a>
             <a href="{{ route('galeri') }}" @click="open = false"
-                class="block py-1 text-gray-700 hover:text-sky-600">Galeri</a>
+                class="block py-1 {{ request()->routeIs('galeri*') ? 'text-sky-600 font-bold' : 'text-gray-700' }} hover:text-sky-600">Galeri</a>
         </div>
     </header>
 
@@ -99,7 +99,6 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center">
             @forelse($guru as $item)
                 @php
-                    // Mengambil ID secara dinamis (id_guru atau id) lalu di-encrypt
                     $rawId = $item->id_guru ?? ($item->id ?? null);
                     $encryptedId = $rawId ? Crypt::encrypt($rawId) : '';
                 @endphp
